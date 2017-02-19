@@ -1,9 +1,9 @@
-<% @template_app_ini.each do |key,value| -%>
+<% @template_app_ini.each do |key, value| -%>
 <%= key %>=<%= value %>
 <% end %>
 <% @template_app_ini_sections.each do |key, hash| -%>
 [<%= key %>]
-<% hash.each do |key,value| -%>
+<% hash.each do |key, value| -%>
 <%= key %>=<%= value %>
 <% end %>
 <% end -%>

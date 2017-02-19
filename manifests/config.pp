@@ -1,4 +1,4 @@
-class gogs::config(
+class gogs::config (
 
   $owner           = $gogs::owner,
   $group           = $gogs::group,

@@ -2,7 +2,7 @@
 #
 # This class is called from gogs
 #
-define gogs::sysconfig(
+define gogs::sysconfig (
   $value,
 ) {
   validate_string($value)

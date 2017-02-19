@@ -1,12 +1,12 @@
 class gogs::service
-(
+  (
 
-  $service_ensure         = $gogs::params::service_ensure,
-  $service_name           = $gogs::service_name,
-  $installation_directory = $gogs::installation_directory,
-  $sysconfig              = $gogs::sysconfig,
+    $service_ensure         = $gogs::params::service_ensure,
+    $service_name           = $gogs::service_name,
+    $installation_directory = $gogs::installation_directory,
+    $sysconfig              = $gogs::sysconfig,
 
-) inherits gogs::params {
+  ) inherits gogs::params {
 
   file { "/etc/init.d/${service_name}":
     ensure => present,
