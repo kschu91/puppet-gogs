@@ -17,16 +17,22 @@ class gogs::install(
   file {
     '/tmp/install_gogs.sh':
       ensure    => 'file',
-      path      => '/tmp/install_gogs.sh',
-      source    => 'puppet:///modules/gogs/install.sh',
+      path      => '/tmp/download_gogs_from_github.sh',
+      source    => 'puppet:///modules/gogs/download.sh',
       mode      => '0755',
-      notify    => Exec['install_gogs'],
+      notify    => Exec['download_gogs_from_github'],
   }
-  exec { 'install_gogs':
-    command      => "/tmp/install_gogs.sh ${installation_directory} linux ${::architecture} ${version}",
+  exec { 'download_gogs_from_github':
+    command      => "/tmp/download_gogs_from_github.sh",
     user         => $owner,
     group        => $group,
-    environment  => ["HOME=${$home}"],
+    environment  => [
+      "HOME=${$home}",
+      "PUPPET_GOGS_INSTALLATION_DIRECTORY=${installation_directory}",
+      "PUPPET_GOGS_OS=linux",
+      "PUPPET_GOGS_ARCH=${::architecture}",
+      "PUPPET_GOGS_VERSION=${version}"
+    ],
     refreshonly  => true
   }
 
