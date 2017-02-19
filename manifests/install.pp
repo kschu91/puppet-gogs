@@ -15,13 +15,14 @@ class gogs::install(
   }
   ->
   file {
-    '/tmp/install_gogs.sh':
+    'create:/tmp/download_gogs_from_github.sh':
       ensure    => 'file',
       path      => '/tmp/download_gogs_from_github.sh',
       source    => 'puppet:///modules/gogs/download.sh',
       mode      => '0755',
       notify    => Exec['download_gogs_from_github'],
   }
+
   exec { 'download_gogs_from_github':
     command      => "/tmp/download_gogs_from_github.sh",
     user         => $owner,
@@ -33,7 +34,17 @@ class gogs::install(
       "PUPPET_GOGS_ARCH=${::architecture}",
       "PUPPET_GOGS_VERSION=${version}"
     ],
-    refreshonly  => true
+    logoutput    => true,
+    refreshonly  => true,
+    notify       => [
+      Exec['remove:/tmp/download_gogs_from_github.sh'],
+      Service[$gogs::params::service_name]
+    ],
+  }
+
+  exec { 'remove:/tmp/download_gogs_from_github.sh':
+    command      => '/bin/rm -f /tmp/download_gogs_from_github.sh',
+    refreshonly  => true,
   }
 
 }

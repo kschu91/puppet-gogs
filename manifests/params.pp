@@ -1,13 +1,12 @@
 class gogs::params {
 
-  $package_ensure         = 'present'
   $service_ensure         = 'running'
   $service_name           = 'gogs'
 
   $manage_user            = true
   $manage_home            = true
 
-  $version                = '0.9.141'
+  $version                = 'latest'
   $installation_directory = '/opt/gogs'
   $repository_root        = '/var/git'
 

@@ -1,6 +1,5 @@
 class gogs (
 
-  $package_ensure = $gogs::params::package_ensure,
   $service_ensure = $gogs::params::service_ensure,
   $service_name   = $gogs::params::service_name,
 

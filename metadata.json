@@ -1,6 +1,6 @@
 {
     "name": "kschu91-gogs",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "author": "kschu91",
     "summary": "Puppet module to install and configure Gogs (Go Git Service).",
     "license": "MIT",
@@ -59,8 +59,9 @@
     ],
     "dependencies": [
         {
-            "name": "puppetlabs/stdlib",
-            "version_requirement": "4.x"
+            "name": "puppetlabs-stdlib",
+            "version_requirement": ">= 1.0.0"
         }
-    ]
+    ],
+    "data_provider": null
 }
