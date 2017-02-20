@@ -40,6 +40,7 @@ Have a look at the [prerequisites documentation of Gogs](https://gogs.io/docs/in
 You can simply include the `gogs` module to get started with the defaults. Check out the [reference](#reference) to see what the defaults are.
 
     include ::gogs
+    
 
 ## Usage
 
