@@ -12,7 +12,7 @@ class gogs::params {
 
   $owner = 'git'
   $group = 'git'
-  $home = "/home/$owner"
+  $home = "/home/${owner}"
 
   $app_ini = {
     'APP_NAME' => 'Go Git Service (managed by puppet)',
@@ -44,13 +44,13 @@ class gogs::params {
 
   case $::osfamily {
     'RedHat': {
-      $sysconfig_script = "/etc/sysconfig/$service_name"
+      $sysconfig_script = "/etc/sysconfig/${service_name}"
     }
     'Suse': {
-      $sysconfig_script = "/etc/sysconfig/$service_name"
+      $sysconfig_script = "/etc/sysconfig/${service_name}"
     }
     'Debian': {
-      $sysconfig_script = "/etc/default/$service_name"
+      $sysconfig_script = "/etc/default/${service_name}"
     }
     default: {
       fail("${::operatingsystem} not supported")

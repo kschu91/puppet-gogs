@@ -24,13 +24,13 @@ class gogs::install (
     }
 
   exec { 'download_gogs_from_github':
-    command     => "/tmp/download_gogs_from_github.sh",
+    command     => '/tmp/download_gogs_from_github.sh',
     user        => $owner,
     group       => $group,
     environment => [
       "HOME=${$home}",
       "PUPPET_GOGS_INSTALLATION_DIRECTORY=${installation_directory}",
-      "PUPPET_GOGS_OS=linux",
+      'PUPPET_GOGS_OS=linux',
       "PUPPET_GOGS_ARCH=${::architecture}",
       "PUPPET_GOGS_VERSION=${version}"
     ],
