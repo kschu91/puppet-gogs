@@ -24,14 +24,14 @@ class gogs::params {
     'server'     => {
       'DOMAIN'    => 'localhost',
       'ROOT_URL'  => 'http://localhost:3000',
-      'HTTP_ADDR' => 'localhost',
+      'HTTP_ADDR' => '0.0.0.0',
       'HTTP_PORT' => 3000,
     },
     'repository' => {
       'ROOT' => $repository_root,
     },
     'security'   => {
-      'INSTALL_LOCK' => true,
+      'INSTALL_LOCK' => false,
     },
   }
 

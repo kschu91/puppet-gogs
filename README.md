@@ -38,16 +38,17 @@ Have a look at the [prerequisites documentation of Gogs](https://gogs.io/docs/in
 ### Beginning with gogs
 
 You can simply include the `gogs` module to get started with the defaults. Check out the [reference](#reference) to see what the defaults are.
+After that you can visit your installation via [http://youhost.tld:3000](http://youhost.tld:3000) and you can follow the installation instructions.
 
     include ::gogs
     
 
 ## Usage
 
-The most common way of using the `gogs` module with a custom configuration is the following.
+The most common way of using the `gogs` module with a minimal set of custom configuration is the following.
 > **Note**: You are able to provide any available Gogs configuration in `app_ini` and `app_ini_sections`. For a 
 complete list of available configuration have a look at the [Gogs configuration cheat sheet](https://gogs.io/docs/advanced/configuration_cheat_sheet).
-  
+
     class { '::gogs':
         app_ini => {
             'APP_NAME' => 'My Fancy GIT Service'
@@ -66,9 +67,15 @@ complete list of available configuration have a look at the [Gogs configuration 
             },
             'security' => {
                 'SECRET_KEY' => 'mysecretkey',
-            }
+            },
+            'security'   => {
+                'INSTALL_LOCK' => true,
+            },
         },
     }
+
+> **Note**: Currently the module will not create an admin user for you. You can do this by using the gogs cli:
+`gogs admin create-user --name="john.doe" --password="supersecret" --email="john@doe.com" --admin`
 
 ## Reference
 
