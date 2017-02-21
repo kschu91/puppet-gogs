@@ -35,22 +35,42 @@ class gogs::params {
     },
   }
 
-  $sysconfig = {
-    'NAME'       => { value => $service_name },
-    'USER'       => { value => $owner },
-    'WORKINGDIR' => { value => $installation_directory },
-    'DAEMON'     => { value => "${installation_directory}/${service_name}" },
-  }
-
-  case $::osfamily {
+  case $::operatingsystem {
     'RedHat': {
       $sysconfig_script = "/etc/sysconfig/${service_name}"
+      $sysconfig = {
+        'NAME'      => { value => $service_name },
+        'GOGS_USER' => { value => $owner },
+        'GOGS_HOME' => { value => $installation_directory },
+        'GOGS_PATH' => { value => "${installation_directory}/${service_name}" },
+      }
     }
-    'Suse': {
+    'CentOS': {
       $sysconfig_script = "/etc/sysconfig/${service_name}"
+      $sysconfig = {
+        'NAME'      => { value => $service_name },
+        'GOGS_USER' => { value => $owner },
+        'GOGS_HOME' => { value => $installation_directory },
+        'GOGS_PATH' => { value => "${installation_directory}/${service_name}" },
+      }
     }
     'Debian': {
       $sysconfig_script = "/etc/default/${service_name}"
+      $sysconfig = {
+        'NAME'       => { value => $service_name },
+        'USER'       => { value => $owner },
+        'WORKINGDIR' => { value => $installation_directory },
+        'DAEMON'     => { value => "${installation_directory}/${service_name}" },
+      }
+    }
+    'Ubuntu': {
+      $sysconfig_script = "/etc/sysconfig/${service_name}"
+      $sysconfig = {
+        'NAME'       => { value => $service_name },
+        'USER'       => { value => $owner },
+        'WORKINGDIR' => { value => $installation_directory },
+        'DAEMON'     => { value => "${installation_directory}/${service_name}" },
+      }
     }
     default: {
       fail("${::operatingsystem} not supported")
