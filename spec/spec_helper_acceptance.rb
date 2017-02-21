@@ -15,6 +15,10 @@ RSpec.configure do |c|
     # Install module and dependencies
     puppet_module_install(:source => module_root, :module_name => module_name)
 
+    pp = <<-EOS
+      package { "git": ensure => "latest", }
+    EOS
+
     apply_manifest_on(hosts, pp, :catch_failures => false)
 
     hosts.each do |host|
