@@ -19,12 +19,12 @@ describe 'gogs' do
   end
 
   context 'with custom port' do
-    it 'should listen on 3210' do
+    it 'should listen on 6000' do
       pp = <<-EOS
         class { '::gogs':
             app_ini_sections => {
                 'server'   => {
-                    'HTTP_PORT' => 3210,
+                    'HTTP_PORT' => 6000,
                 },
             },
         }
@@ -35,7 +35,7 @@ describe 'gogs' do
       # apply_manifest(pp, :catch_changes => true)
     end
 
-    describe port(3210) do
+    describe port(6000) do
       it { is_expected.to be_listening }
     end
   end
