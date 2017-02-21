@@ -11,7 +11,7 @@ class gogs::service
   $os = downcase($::osfamily)
 
   file { "/etc/init.d/${service_name}":
-    ensure => present,
+    ensure => file,
     source => "${installation_directory}/scripts/init/${os}/gogs",
     owner  => 'root',
     group  => 'root',
@@ -19,7 +19,7 @@ class gogs::service
   }
 
   file { $gogs::params::sysconfig_script:
-    ensure => present,
+    ensure => file,
   }
 
   create_resources('gogs::sysconfig', $sysconfig)

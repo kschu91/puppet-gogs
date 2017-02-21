@@ -19,6 +19,8 @@ class gogs::install (
         ensure => 'file',
         path   => '/tmp/download_gogs_from_github.sh',
         source => 'puppet:///modules/gogs/download.sh',
+        owner  => 'root',
+        group  => 'root',
         mode   => '0755',
         notify => Exec['download_gogs_from_github'],
     }
@@ -32,7 +34,7 @@ class gogs::install (
       "PUPPET_GOGS_INSTALLATION_DIRECTORY=${installation_directory}",
       'PUPPET_GOGS_OS=linux',
       "PUPPET_GOGS_ARCH=${::architecture}",
-      "PUPPET_GOGS_VERSION=${version}"
+      "PUPPET_GOGS_VERSION=${version}",
     ],
     logoutput   => true,
     refreshonly => true,

@@ -11,6 +11,6 @@ define gogs::sysconfig (
     path   => $gogs::params::sysconfig_script,
     line   => "${name}=\"${value}\"",
     match  => "^${name}=",
-    notify => Service[$gogs::params::service_name]
+    notify => Service[$gogs::params::service_name],
   }
 }
