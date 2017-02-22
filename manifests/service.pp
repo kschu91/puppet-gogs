@@ -40,12 +40,16 @@ class gogs::service
       group  => 'root',
     }
 
-  create_resources('gogs::sysconfig', $sysconfig)
+    ->
 
-  service { $service_name:
-    ensure     => $service_ensure,
-    hasrestart => true, # let puppet start and stop (restart seems to be not working)
-    hasstatus  => true, # let puppet check for the process in process list (status command seems to be not working )
-    enable     => true,
-  }
+    create_resources('gogs::sysconfig', $sysconfig)
+
+    ->
+
+    service { $service_name:
+      ensure     => $service_ensure,
+      hasrestart => true, # let puppet start and stop (restart seems to be not working)
+      hasstatus  => true, # let puppet check for the process in process list (status command seems to be not working )
+      enable     => true,
+    }
 }
