@@ -8,18 +8,34 @@ class gogs::service
 
   ) inherits gogs::params {
 
-  file { $gogs::params::init_script:
-    ensure => file,
-    source => $gogs::params::gogs_init_script,
+  file { '/etc/init.d':
+    ensure => 'directory',
     owner  => 'root',
     group  => 'root',
-    mode   => '0755',
   }
+
+    ->
+
+    file { $gogs::params::init_script:
+      ensure => file,
+      source => $gogs::params::gogs_init_script,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
+    }
 
     ->
 
     file { '/etc/init.d/functions':
       ensure => created,
+      owner  => 'root',
+      group  => 'root',
+    }
+
+    ->
+
+    file { $gogs::params::sysconfig_dir:
+      ensure => directory,
       owner  => 'root',
       group  => 'root',
     }

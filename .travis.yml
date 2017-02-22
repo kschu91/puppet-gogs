@@ -3,21 +3,21 @@ language: ruby
 bundler_args: --without system_tests
 before_install: rm Gemfile.lock || true
 script: ["bundle exec rake validate", "bundle exec rake lint", "bundle exec rake spec"]
-#rvm:
-#  - 1.9
-#  - 2.0
-#  - 2.1
-#  - 2.2
-#  - 2.3.0
+rvm:
+  - 1.9
+  - 2.0
+  - 2.1
+  - 2.2
+  - 2.3.0
 env:
-#  - PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
-#  - PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
-#  - PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
-#  - PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
-#  - PUPPET_GEM_VERSION="~> 4.6.0" STRICT_VARIABLES=yes
-#  - PUPPET_GEM_VERSION="~> 4.7.0" STRICT_VARIABLES=yes
-#  - PUPPET_GEM_VERSION="~> 4.8.0" STRICT_VARIABLES=yes
-#  - PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
+  - PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
+  - PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
+  - PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
+  - PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
+  - PUPPET_GEM_VERSION="~> 4.6.0" STRICT_VARIABLES=yes
+  - PUPPET_GEM_VERSION="~> 4.7.0" STRICT_VARIABLES=yes
+  - PUPPET_GEM_VERSION="~> 4.8.0" STRICT_VARIABLES=yes
+  - PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
 matrix:
   include:
   # run acceptance tests on ubuntu-14.04
@@ -42,30 +42,30 @@ matrix:
       env: BEAKER_set="centos-7"
       bundler_args:
       script: sudo service docker restart ; sleep 10 && bundle exec rspec spec/acceptance/*_spec.rb
-#  exclude:
-#  # puppet 3.x does not run with ruby 2.3
-#    - rvm: 2.3.0
-#      env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
-#    - rvm: 2.3.0
-#      env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
-#    - rvm: 2.3.0
-#      env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
-#    - rvm: 2.3.0
-#      env: PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
-#  # puppet 3.x does not run with ruby 2.2
-#    - rvm: 2.2
-#      env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
-#    - rvm: 2.2
-#      env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
-#    - rvm: 2.2
-#      env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
-#    - rvm: 2.2
-#      env: PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
-#  # puppet >=4.9 dropped support for ruby <=2.0
-#    - rvm: 2.0
-#      env: PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
-#    - rvm: 1.9
-#      env: PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
+  exclude:
+  # puppet 3.x does not run with ruby 2.3
+    - rvm: 2.3.0
+      env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
+    - rvm: 2.3.0
+      env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
+    - rvm: 2.3.0
+      env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
+    - rvm: 2.3.0
+      env: PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
+  # puppet 3.x does not run with ruby 2.2
+    - rvm: 2.2
+      env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
+    - rvm: 2.2
+      env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
+    - rvm: 2.2
+      env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
+    - rvm: 2.2
+      env: PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
+  # puppet >=4.9 dropped support for ruby <=2.0
+    - rvm: 2.0
+      env: PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
+    - rvm: 1.9
+      env: PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
 deploy:
   provider: puppetforge
   user: kschu91
@@ -75,4 +75,4 @@ deploy:
     tags: true
     # Only publish if our main Ruby target builds
     rvm: 2.1
-    condition: "$PUPPET_GEM_VERSION = '~> 4.9.0'"
+    condition: $PUPPET_GEM_VERSION = "~> 4.9.0"
