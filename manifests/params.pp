@@ -39,6 +39,7 @@ class gogs::params {
     'RedHat': {
       $init_script = "/etc/rc.d/init.d/${service_name}"
       $sysconfig_script = "/etc/sysconfig/${service_name}"
+      $gogs_init_script = "${installation_directory}/scripts/init/centos/gogs"
       $sysconfig = {
         'NAME'      => { value => $service_name },
         'GOGS_USER' => { value => $owner },
@@ -51,6 +52,7 @@ class gogs::params {
     'CentOS': {
       $init_script = "/etc/rc.d/init.d/${service_name}"
       $sysconfig_script = "/etc/sysconfig/${service_name}"
+      $gogs_init_script = "${installation_directory}/scripts/init/centos/gogs"
       $sysconfig = {
         'NAME'      => { value => $service_name },
         'GOGS_USER' => { value => $owner },
@@ -63,6 +65,7 @@ class gogs::params {
     'Debian': {
       $init_script = "/etc/init.d/${service_name}"
       $sysconfig_script = "/etc/default/${service_name}"
+      $gogs_init_script = "${installation_directory}/scripts/init/debian/gogs"
       $sysconfig = {
         'NAME'       => { value => $service_name },
         'USER'       => { value => $owner },
@@ -73,6 +76,7 @@ class gogs::params {
     'Ubuntu': {
       $init_script = "/etc/init.d/${service_name}"
       $sysconfig_script = "/etc/default/${service_name}"
+      $gogs_init_script = "${installation_directory}/scripts/init/debian/gogs"
       $sysconfig = {
         'NAME'       => { value => $service_name },
         'USER'       => { value => $owner },

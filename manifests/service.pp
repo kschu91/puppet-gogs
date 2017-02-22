@@ -8,11 +8,9 @@ class gogs::service
 
   ) inherits gogs::params {
 
-  $os = downcase($::osfamily)
-
   file { $gogs::params::init_script:
     ensure => file,
-    source => "${installation_directory}/scripts/init/${os}/gogs",
+    source => $gogs::params::gogs_init_script,
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
