@@ -9,7 +9,7 @@ HOSTS:
     docker_preserve_image: true
     docker_cmd: '["/sbin/init"]'
     docker_image_commands:
-      - 'yum install -y crontabs tar wget which'
+      - 'yum install -y crontabs tar wget which redhat-lsb'
       - 'sed -i -e "/mingetty/d" /etc/inittab'
 CONFIG:
   type: aio
