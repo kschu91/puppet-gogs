@@ -10,8 +10,8 @@ if [ -z ${PUPPET_GOGS_VERSION} ]; then echo "PUPPET_GOGS_VERSION not set!"; exit
 PUPPET_GOGS_ARCH=$(echo "${PUPPET_GOGS_ARCH}" | awk '{print tolower($0)}')
 PUPPET_GOGS_OS=$(echo "${PUPPET_GOGS_OS}" | awk '{print tolower($0)}')
 
-PUPPET_GOGS_ARCH="${PUPPET_GOGS_ARCH}/x86_64/amd64"
-PUPPET_GOGS_ARCH="${PUPPET_GOGS_ARCH}/i386/386"
+PUPPET_GOGS_ARCH="${PUPPET_GOGS_ARCH/x86_64/amd64}"
+PUPPET_GOGS_ARCH="${PUPPET_GOGS_ARCH/i386/386}"
 
 if [ ${PUPPET_GOGS_VERSION} == "latest" ]; then
     echo "fetching latest version"
