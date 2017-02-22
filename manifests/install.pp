@@ -17,7 +17,7 @@ class gogs::install (
     ->
 
     # @todo make log path configurable (app.ini: [log] ROOT_PATH && $::gogs::params::sysconfig[LOGPATH])
-    file { "$installation_directory/log":
+    file { "${installation_directory}/log":
       ensure => 'directory',
       owner  => $owner,
       group  => $group,

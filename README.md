@@ -25,7 +25,9 @@ You are completely free to configure Gogs for your needs since this module allow
 
 ### What gogs affects
 
-Gogs will be installed in `/opt/gogs` by default and a service will be installed with an init script (by default the service is called `gogs`).
+* Gogs will be installed in `/opt/gogs` by default.
+* A service will be installed with an init script (by default the service is called `gogs`).
+* By default a user and the correspendig group will be created (can be turned off). 
 
 Beside from that nothing else is affected on your system.
 
@@ -37,7 +39,7 @@ Have a look at the [prerequisites documentation of Gogs](https://gogs.io/docs/in
 
 On `RedHat` and `CentOS` you have to make sure the `initscripts` package is installed, since this is not installed by default on this distributions.
 
-Just to be complete: `curl` and `wget` are required at the moment.
+Just to be complete: `curl`, `wget` and `tar` system packages are required at the moment.
 
 ### Beginning with gogs
 
