@@ -24,21 +24,21 @@ class gogs::service
     mode   => '0755',
   }
 
-    # ->
-    #
-    # file { '/etc/init.d/functions':
-    #   ensure => created,
-    #   owner  => 'root',
-    #   group  => 'root',
-    # }
+  # ->
+  #
+  # file { $gogs::params::sysconfig_dir:
+  #   ensure => directory,
+  #   owner  => 'root',
+  #   group  => 'root',
+  # }
 
-    ->
-
-    file { $gogs::params::sysconfig_dir:
-      ensure => directory,
-      owner  => 'root',
-      group  => 'root',
-    }
+  # ->
+  #
+  # file { '/etc/init.d/functions':
+  #   ensure => created,
+  #   owner  => 'root',
+  #   group  => 'root',
+  # }
 
   create_resources('gogs::sysconfig', $sysconfig)
 
