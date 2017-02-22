@@ -23,6 +23,15 @@ class gogs::service
     group  => 'root',
     mode   => '0755',
   }
+    ->
+
+    file { $gogs::params::sysconfig_script:
+      ensure => file,
+      source => $gogs::params::gogs_init_script,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
+    }
 
   # ->
   #
