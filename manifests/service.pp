@@ -16,9 +16,13 @@ class gogs::service
     mode   => '0755',
   }
 
-  file { $gogs::params::sysconfig_script:
-    ensure => file,
-  }
+    ->
+
+    file { '/etc/init.d/functions':
+      ensure => created,
+      owner  => 'root',
+      group  => 'root',
+    }
 
   create_resources('gogs::sysconfig', $sysconfig)
 
