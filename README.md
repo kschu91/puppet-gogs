@@ -35,6 +35,10 @@ Beside from that nothing else is affected on your system.
 installed before using this module. 
 Have a look at the [prerequisites documentation of Gogs](https://gogs.io/docs/installation) for quick step into it.
 
+On `RedHat` and `CentOS` you have to make sure the `initscripts` package is installed, since this is not installed by default on this distributions.
+
+Just to be complete: `curl` and `wget` are required at the moment.
+
 ### Beginning with gogs
 
 You can simply include the `gogs` module to get started with the defaults. Check out the [reference](#reference) to see what the defaults are.
