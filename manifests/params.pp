@@ -37,24 +37,31 @@ class gogs::params {
 
   case $::operatingsystem {
     'RedHat': {
+      $init_script = "/etc/rc.d/init.d/${service_name}"
       $sysconfig_script = "/etc/sysconfig/${service_name}"
       $sysconfig = {
         'NAME'      => { value => $service_name },
         'GOGS_USER' => { value => $owner },
         'GOGS_HOME' => { value => $installation_directory },
         'GOGS_PATH' => { value => "${installation_directory}/${service_name}" },
+        'LOGPATH'   => { value => "${installation_directory}/log" },
+        'LOGFILE'   => { value => "${installation_directory}/log/gogs.log" },
       }
     }
     'CentOS': {
+      $init_script = "/etc/rc.d/init.d/${service_name}"
       $sysconfig_script = "/etc/sysconfig/${service_name}"
       $sysconfig = {
         'NAME'      => { value => $service_name },
         'GOGS_USER' => { value => $owner },
         'GOGS_HOME' => { value => $installation_directory },
         'GOGS_PATH' => { value => "${installation_directory}/${service_name}" },
+        'LOGPATH'   => { value => "${installation_directory}/log" },
+        'LOGFILE'   => { value => "${installation_directory}/log/gogs.log" },
       }
     }
     'Debian': {
+      $init_script = "/etc/init.d/${service_name}"
       $sysconfig_script = "/etc/default/${service_name}"
       $sysconfig = {
         'NAME'       => { value => $service_name },
@@ -64,6 +71,7 @@ class gogs::params {
       }
     }
     'Ubuntu': {
+      $init_script = "/etc/init.d/${service_name}"
       $sysconfig_script = "/etc/default/${service_name}"
       $sysconfig = {
         'NAME'       => { value => $service_name },

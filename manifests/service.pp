@@ -10,7 +10,7 @@ class gogs::service
 
   $os = downcase($::osfamily)
 
-  file { "/etc/init.d/${service_name}":
+  file { $gogs::params::init_script:
     ensure => file,
     source => "${installation_directory}/scripts/init/${os}/gogs",
     owner  => 'root',
