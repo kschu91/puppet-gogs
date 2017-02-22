@@ -43,6 +43,8 @@ class gogs::params {
         'GOGS_USER' => { value => $owner },
         'GOGS_HOME' => { value => $installation_directory },
         'GOGS_PATH' => { value => "${installation_directory}/${service_name}" },
+        'LOGPATH'   => { value => "${installation_directory}/log" },
+        'LOGFILE'   => { value => "${installation_directory}/log/gogs.log" },
       }
     }
     'CentOS': {
@@ -52,6 +54,8 @@ class gogs::params {
         'GOGS_USER' => { value => $owner },
         'GOGS_HOME' => { value => $installation_directory },
         'GOGS_PATH' => { value => "${installation_directory}/${service_name}" },
+        'LOGPATH'   => { value => "${installation_directory}/log" },
+        'LOGFILE'   => { value => "${installation_directory}/log/gogs.log" },
       }
     }
     'Debian': {
@@ -64,7 +68,7 @@ class gogs::params {
       }
     }
     'Ubuntu': {
-      $sysconfig_script = "/etc/sysconfig/${service_name}"
+      $sysconfig_script = "/etc/default/${service_name}"
       $sysconfig = {
         'NAME'       => { value => $service_name },
         'USER'       => { value => $owner },
