@@ -16,8 +16,8 @@
 
 ## Description
 
-This module will install and configure [Gogs (A painless self-hosted Git service.)](http://gogs.io)
-by using the preferred way of [installing Gogs from binary](https://gogs.io/docs/installation/install_from_binary)
+This module install and configure [Gogs (A painless self-hosted Git service.)](http://gogs.io)
+by [installing Gogs from binary](https://gogs.io/docs/installation/install_from_binary)
 instead of using any Thirdparty PPA´s.
 You are completely free to configure Gogs for your needs since this module allows dynamic configuration for the `custom/conf/app.in` file.
 
@@ -25,16 +25,21 @@ You are completely free to configure Gogs for your needs since this module allow
 
 ### What gogs affects
 
-Gogs will be installed in the given installation directory (`/opt/gogs` by default) and a
-service will be installed with an init.d script (by default the service is called `gogs`).
+* Gogs will be installed in `/opt/gogs` by default.
+* A service will be installed with an init script (by default the service is called `gogs`).
+* By default a user and the correspendig group will be created (can be turned off). 
 
-Beside from that nothing else will be affected on your system.
+Beside from that nothing else is affected on your system.
 
 ### Setup Requirements
 
 `MySQL` or `PostgreSQL` and `git` are not being installed by this module. Make sure those services are
 installed before using this module. 
 Have a look at the [prerequisites documentation of Gogs](https://gogs.io/docs/installation) for quick step into it.
+
+On `RedHat` and `CentOS` you have to make sure the `initscripts` package is installed, since this is not installed by default on this distributions.
+
+Just to be complete: `curl`, `wget` and `tar` system packages are required at the moment.
 
 ### Beginning with gogs
 
@@ -212,9 +217,8 @@ complete list of available configuration have a look at the [Gogs configuration 
 
 ## Limitations
 
-This module is developed and tested on Ubuntu but should also work on CentOS, Suse or Debian.
-Dont hesitate to [create an issue on Github](https://github.com/kschu91/puppet-gogs/issues/new)
-if you are having any trouble.
+This module is developed and tested on Ubuntu, Debian and CentOS (RedHat should also work). But other distributions are currently not supported.
+Dont hesitate to [create an issue on Github](https://github.com/kschu91/puppet-gogs/issues/new) if you are facing any trouble.
 
 ## Development
 

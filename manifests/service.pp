@@ -1,26 +1,28 @@
 class gogs::service
   (
 
-    $service_ensure         = $gogs::params::service_ensure,
+    $service_ensure         = $gogs::service_ensure,
     $service_name           = $gogs::service_name,
     $installation_directory = $gogs::installation_directory,
     $sysconfig              = $gogs::sysconfig,
 
   ) inherits gogs::params {
 
-  $os = downcase($::osfamily)
-
-  file { "/etc/init.d/${service_name}":
-    ensure => present,
-    source => "${installation_directory}/scripts/init/${os}/gogs",
+  file { $gogs::params::init_script:
+    ensure => file,
+    source => $gogs::params::gogs_init_script,
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
   }
+    ->
 
-  file { $gogs::params::sysconfig_script:
-    ensure => present,
-  }
+    file { $gogs::params::sysconfig_script:
+      ensure => file,
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0755',
+    }
 
   create_resources('gogs::sysconfig', $sysconfig)
 

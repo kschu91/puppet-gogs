@@ -1,8 +1,8 @@
 ---
 language: ruby
-bundler_args: --without development system_tests
+bundler_args: --without system_tests
 before_install: rm Gemfile.lock || true
-script: 'bundle exec rake test'
+script: ["bundle exec rake validate", "bundle exec rake lint", "bundle exec rake spec"]
 rvm:
   - 1.9
   - 2.0
@@ -19,6 +19,29 @@ env:
   - PUPPET_GEM_VERSION="~> 4.8.0" STRICT_VARIABLES=yes
   - PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
 matrix:
+  include:
+  # run acceptance tests on ubuntu-14.04
+    - rvm: default
+      sudo: required
+      dist: trusty
+      services: docker
+      env: BEAKER_set="ubuntu-14.04"
+      bundler_args:
+      script: sudo service docker restart ; sleep 10 && bundle exec rspec spec/acceptance/*_spec.rb
+    - rvm: default
+      sudo: required
+      dist: trusty
+      services: docker
+      env: BEAKER_set="debian-7"
+      bundler_args:
+      script: sudo service docker restart ; sleep 10 && bundle exec rspec spec/acceptance/*_spec.rb
+    - rvm: default
+      sudo: required
+      dist: trusty
+      services: docker
+      env: BEAKER_set="centos-7"
+      bundler_args:
+      script: sudo service docker restart ; sleep 10 && bundle exec rspec spec/acceptance/*_spec.rb
   exclude:
   # puppet 3.x does not run with ruby 2.3
     - rvm: 2.3.0
@@ -43,3 +66,13 @@ matrix:
       env: PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
     - rvm: 1.9
       env: PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
+deploy:
+  provider: puppetforge
+  user: kschu91
+  password:
+    secure: NP6xKyc9Xjw8TJN5Yrw4epyHV1e+DwfNy0wHJZsxqvKXrxLJ576A5hS8u6tT3qyIFjcTdQyUnr++2R/YJFwoG6DgIJV9JpssHwY2iDxBvpAG/TKDMAL7IEZTSg4RNvTYA9rgK5eWNKqy5cV9U7Acem4sAP9tBOT9YzSpHOVeiIDU4mu5PAMEiYVqyfySCeVBCn04bd2X2LDeRasSVXMw1R+O2RzaGFCpBdKmcgXox+wCYGjq0AvPBPlP9QF5k8eiMP5Fwvm7s+9ErqGuhCrPzQ4RjGf3w6mGjMC5cZqclC9j130nb/+SlVJpQNRL3iF/R9Ogm5UCG5zWY/HG6cY+pL6NN+scGypX7DLMEXvNb2GAhoMxE78emdzmvCIHph1dkAejjh4xQtPIWU/8MgGKFfZ/wVmem+d/CvS8RFUqJ2isqs+XZkXeexsttgqOPetB7VsCTM8qkUu07AWpeRa3GF8bWQHPfSpS4gOgaQg0hAWwWHyqePMDW550vzuxx68l7vifY4L004H4n+NaeuzHxj1iDm0+iDMBjzGPo1Or0ZoW542a00L41aq1DQiFYyBHTLIlCmfD0YC7cUMJWilW1RTbg8OCZLlT6z9UgF5B1s04zOfjjCVye2bvwv19L1IUIH/VdFfMfMJcF1+FwHU89wDlaFB16MYefEeIfWDuwt0=
+  on:
+    tags: true
+    # Only publish if our main Ruby target builds
+    rvm: 2.1
+    condition: $PUPPET_GEM_VERSION = "~> 4.9.0"

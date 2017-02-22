@@ -23,8 +23,8 @@ class gogs (
   anchor { 'gogs::begin': } ->
     class { '::gogs::user': } ->
     class { '::gogs::install': } ->
-    class { '::gogs::config': } ~>
-    class { '::gogs::app_ini': } ~>
+    class { '::gogs::config': } ->
+    class { '::gogs::app_ini': } ->
     class { '::gogs::service': } ->
     anchor { 'gogs::end': }
 

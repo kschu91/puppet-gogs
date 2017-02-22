@@ -11,4 +11,5 @@ class gogs::config (
     owner  => $owner,
     group  => $group,
   }
+
 }

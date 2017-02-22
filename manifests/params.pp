@@ -35,22 +35,58 @@ class gogs::params {
     },
   }
 
-  $sysconfig = {
-    'NAME'       => { value => $service_name },
-    'USER'       => { value => $owner },
-    'WORKINGDIR' => { value => $installation_directory },
-    'DAEMON'     => { value => "${installation_directory}/${service_name}" },
-  }
-
-  case $::osfamily {
+  case $::operatingsystem {
     'RedHat': {
-      $sysconfig_script = "/etc/sysconfig/${service_name}"
+      $init_script = "/etc/rc.d/init.d/${service_name}"
+      $sysconfig_dir = '/etc/sysconfig'
+      $sysconfig_script = "${sysconfig_dir}/${service_name}"
+      $gogs_init_script = "${installation_directory}/scripts/init/centos/gogs"
+      $sysconfig = {
+        'NAME'      => { value => $service_name },
+        'GOGS_USER' => { value => $owner },
+        'GOGS_HOME' => { value => $installation_directory },
+        'GOGS_PATH' => { value => "${installation_directory}/${service_name}" },
+        'LOGPATH'   => { value => "${installation_directory}/log" },
+        'LOGFILE'   => { value => "${installation_directory}/log/gogs.log" },
+      }
     }
-    'Suse': {
-      $sysconfig_script = "/etc/sysconfig/${service_name}"
+    'CentOS': {
+      $init_script = "/etc/rc.d/init.d/${service_name}"
+      $sysconfig_dir = '/etc/sysconfig'
+      $sysconfig_script = "${sysconfig_dir}/${service_name}"
+      $gogs_init_script = "${installation_directory}/scripts/init/centos/gogs"
+      $sysconfig = {
+        'NAME'      => { value => $service_name },
+        'GOGS_USER' => { value => $owner },
+        'GOGS_HOME' => { value => $installation_directory },
+        'GOGS_PATH' => { value => "${installation_directory}/${service_name}" },
+        'LOGPATH'   => { value => "${installation_directory}/log" },
+        'LOGFILE'   => { value => "${installation_directory}/log/gogs.log" },
+      }
     }
     'Debian': {
-      $sysconfig_script = "/etc/default/${service_name}"
+      $init_script = "/etc/init.d/${service_name}"
+      $sysconfig_dir = '/etc/default'
+      $sysconfig_script = "${sysconfig_dir}/${service_name}"
+      $gogs_init_script = "${installation_directory}/scripts/init/debian/gogs"
+      $sysconfig = {
+        'NAME'       => { value => $service_name },
+        'USER'       => { value => $owner },
+        'WORKINGDIR' => { value => $installation_directory },
+        'DAEMON'     => { value => "${installation_directory}/${service_name}" },
+      }
+    }
+    'Ubuntu': {
+      $init_script = "/etc/init.d/${service_name}"
+      $sysconfig_dir = '/etc/default'
+      $sysconfig_script = "${sysconfig_dir}/${service_name}"
+      $gogs_init_script = "${installation_directory}/scripts/init/debian/gogs"
+      $sysconfig = {
+        'NAME'       => { value => $service_name },
+        'USER'       => { value => $owner },
+        'WORKINGDIR' => { value => $installation_directory },
+        'DAEMON'     => { value => "${installation_directory}/${service_name}" },
+      }
     }
     default: {
       fail("${::operatingsystem} not supported")
