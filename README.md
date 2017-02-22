@@ -44,10 +44,29 @@ Just to be complete: `curl`, `wget` and `tar` system packages are required at th
 ### Beginning with gogs
 
 You can simply include the `gogs` module to get started with the defaults. Check out the [reference](#reference) to see what the defaults are.
-After that you can visit your installation via [http://youhost.tld:3000](http://youhost.tld:3000) and you can follow the installation instructions.
+After that you can visit Gogs via [http://youhost.tld:3000](http://youhost.tld:3000) and you can follow the installation instructions from the gogs install tool.
 
     include ::gogs
     
+But be aware, if you change anything within gogs installation tool puppet will overwrite the `app.ini` on its next run. You rather should
+define all your configurations within puppet. A minimal setup with a `mysql` database should look like this:
+
+    class { '::gogs':
+        app_ini_sections => {
+            'database' => {
+                'DB_TYPE' => 'mysql',
+                'HOST'    => 'localhost:3306',
+                'NAME'    => 'gogs',
+                'USER'    => 'gogs',
+                'PASSWD'  => 'mysecretpasswd',
+            },
+            'security' => {
+                'SECRET_KEY' => 'mysecretkey',
+                'INSTALL_LOCK' => true,
+            },
+        },
+    }
+> **Note**: You should always set `INSTALL_LOCK` configuration to `true`. Otherwise the installer is open for everyone.
 
 ## Usage
 
@@ -62,7 +81,7 @@ complete list of available configuration have a look at the [Gogs configuration 
         app_ini_sections => {
             'server'   => {
                 'DOMAIN'    => 'git.example.com',
-                'HTTP_PORT' => 3000,
+                'HTTP_PORT' => 8080,
             },
             'database' => {
                 'DB_TYPE' => 'mysql',
@@ -73,8 +92,6 @@ complete list of available configuration have a look at the [Gogs configuration 
             },
             'security' => {
                 'SECRET_KEY' => 'mysecretkey',
-            },
-            'security'   => {
                 'INSTALL_LOCK' => true,
             },
         },
