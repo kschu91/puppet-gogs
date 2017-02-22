@@ -40,11 +40,7 @@ class gogs::service
       group  => 'root',
     }
 
-    ->
-
     create_resources('gogs::sysconfig', $sysconfig)
-
-    ->
 
     service { $service_name:
       ensure     => $service_ensure,
