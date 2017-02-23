@@ -9,3 +9,10 @@ PuppetLint::RakeTask.new :lint do |config|
 end
 
 PuppetSyntax.exclude_paths = ["spec/fixtures/**/*.pp", "vendor/**/*"]
+
+task :test => [
+    :validate,
+    :syntax,
+    :lint,
+    :spec,
+]

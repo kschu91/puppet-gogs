@@ -2,7 +2,7 @@
 language: ruby
 bundler_args: --without system_tests
 before_install: rm Gemfile.lock || true
-script: ["bundle exec rake validate", "bundle exec rake lint", "bundle exec rake spec"]
+script: ["bundle exec rake test"]
 rvm:
   - 1.9
   - 2.0
