@@ -1,6 +1,9 @@
 # kschu91/gogs
 
 [![Build Status](https://travis-ci.org/kschu91/puppet-gogs.svg?branch=master)](https://travis-ci.org/kschu91/puppet-gogs)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/kschu91/gogs.svg)](https://forge.puppetlabs.com/kschu91/gogs)
+[![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/kschu91/gogs.svg)](https://forge.puppetlabs.com/kschu91/gogs)
+[![Puppet Forge - scores](https://img.shields.io/puppetforge/f/kschu91/gogs.svg)](https://forge.puppetlabs.com/kschu91/gogs)
 
 #### Table of Contents
 
