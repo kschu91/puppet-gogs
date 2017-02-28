@@ -1,18 +1,28 @@
 class gogs::install (
 
+  $version                = $gogs::version,
+
   $owner                  = $gogs::owner,
   $group                  = $gogs::group,
-  $home                   = $gogs::home,
+
   $installation_directory = $gogs::installation_directory,
-  $version                = $gogs::version,
+  $repository_root        = $gogs::repository_root,
 
 ) {
 
-  file { $installation_directory:
+  file { $repository_root:
     ensure => 'directory',
     owner  => $owner,
     group  => $group,
   }
+
+    ->
+
+    file { $installation_directory:
+      ensure => 'directory',
+      owner  => $owner,
+      group  => $group,
+    }
 
     ->
 
@@ -33,27 +43,26 @@ class gogs::install (
         owner  => 'root',
         group  => 'root',
         mode   => '0755',
-        notify => Exec['download_gogs_from_github'],
     }
 
-  exec { 'download_gogs_from_github':
-    command     => '/tmp/download_gogs_from_github.sh',
-    user        => $owner,
-    group       => $group,
-    environment => [
-      "HOME=${$home}",
-      "PUPPET_GOGS_INSTALLATION_DIRECTORY=${installation_directory}",
-      'PUPPET_GOGS_OS=linux',
-      "PUPPET_GOGS_ARCH=${::architecture}",
-      "PUPPET_GOGS_VERSION=${version}",
-    ],
-    logoutput   => true,
-    refreshonly => true,
-    notify      => [
-      Exec['remove:/tmp/download_gogs_from_github.sh'],
-      Service[$gogs::params::service_name]
-    ],
-  }
+    ->
+
+    exec { 'download_gogs_from_github':
+      command     => '/tmp/download_gogs_from_github.sh',
+      user        => $owner,
+      group       => $group,
+      environment => [
+        "PUPPET_GOGS_INSTALLATION_DIRECTORY=${installation_directory}",
+        'PUPPET_GOGS_OS=linux',
+        "PUPPET_GOGS_ARCH=${::architecture}",
+        "PUPPET_GOGS_VERSION=${version}",
+      ],
+      logoutput   => true,
+      notify      => [
+        Exec['remove:/tmp/download_gogs_from_github.sh'],
+        Service[$gogs::params::service_name]
+      ],
+    }
 
   exec { 'remove:/tmp/download_gogs_from_github.sh':
     command     => '/bin/rm -f /tmp/download_gogs_from_github.sh',

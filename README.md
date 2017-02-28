@@ -28,21 +28,21 @@ You are completely free to configure Gogs for your needs since this module allow
 
 ### What gogs affects
 
-* Gogs will be installed in `/opt/gogs` by default.
-* A service will be installed with an init script (by default the service is called `gogs`).
+* Gogs will be installed in `/opt/gogs` (can be changed).
+* A service will be installed with an init script.
 * By default a user and the correspendig group will be created (can be turned off). 
-
-Beside from that nothing else is affected on your system.
+* `curl`, `wget`, `tar`, `git` will be installed if not already installed on your system.
+* On `RedHat` and `CentOS` the `initscripts` package will be installed if not already done.
+* On `Debian` and `Ubuntu` the `software-properties-common` package will be installed if not already done.
 
 ### Setup Requirements
 
-`MySQL` or `PostgreSQL` and `git` are not being installed by this module. Make sure those services are
-installed before using this module. 
-Have a look at the [prerequisites documentation of Gogs](https://gogs.io/docs/installation) for quick step into it.
+`MySQL` or `PostgreSQL` are not being installed by this module. Make sure those services are
+installed before using Gogs. 
+Have a look at the [prerequisites documentation of Gogs](https://gogs.io/docs/installation) for a quick step into it.
 
-On `RedHat` and `CentOS` you have to make sure the `initscripts` package is installed, since this is not installed by default on this distributions.
+> **Note**: Currently puppet 3 and 4 is supported. But the support of puppet 3.x will be dropped in future versions this module. 
 
-Just to be complete: `curl`, `wget` and `tar` system packages are required at the moment.
 
 ### Beginning with gogs
 
@@ -223,9 +223,15 @@ complete list of available configuration have a look at the [Gogs configuration 
 
 #### sysconfig
   This module installs Gogs as a daemons/service on your system. This is done by the [provided init scripts of Gogs](https://github.com/gogits/gogs/tree/master/scripts/init)
-  and depends on your distribution. If you need to change variables for the daemon script use this parameter.
+  and depends on your OS.
+  
+  Normally there is no need to change this. But if you need to change variables for the daemon script anyways use this parameter.
   The provided variables are stored in a sysconfig file depending on your distribution and service name (e.g `/etc/default/gogs`)
   and are then automatically interpreted by the daemon scripts.
+  
+  The configuration key to pass depends on your OS. For example for Debian the user variable is named `USER` and for CentOS it´s named `GOGS_USER`.
+  Take a look into the [provided init scripts of Gogs](https://github.com/gogits/gogs/tree/master/scripts/init) to make sure you pass the correct variables.
+  otherwise your service may fail silently.
   
     class { '::gogs':
         sysconfig => {
