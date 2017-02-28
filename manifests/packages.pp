@@ -8,10 +8,10 @@ class gogs::packages () {
       ensure_packages(['git', 'curl', 'wget', 'tar', 'initscripts'])
     }
     'Debian': {
-      ensure_packages(['git-core', 'curl', 'wget', 'tar', 'software-properties-common'])
+      ensure_packages(['git-core', 'curl', 'wget', 'tar'])
     }
     'Ubuntu': {
-      ensure_packages(['git-core', 'curl', 'wget', 'tar', 'software-properties-common'])
+      ensure_packages(['git-core', 'curl', 'wget', 'tar'])
     }
     default: {
       fail("${::operatingsystem} not supported")
