@@ -235,8 +235,8 @@ complete list of available configuration have a look at the [Gogs configuration 
   
     class { '::gogs':
         sysconfig => {
-            'NAME' => { value => 'gogitsgogs' },
-            'USER' => { value => 'johndoe' },
+            'NAME' => 'gogitsgogs',
+            'USER' => 'johndoe',
         }
     }
 
