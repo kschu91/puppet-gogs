@@ -45,11 +45,6 @@ define gogs::sysconfig::centos (
     path   => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
   }
 
-  # Before puppet 4, the autobefore does not work - therefore
-  # we need to keep this workaround here
-  if versioncmp($::puppetversion, '4.0') <= 0 {
-    File["/etc/rc.d/init.d/${service_name}"] -> Exec['systemctl daemon-reload']
-    File["/etc/sysconfig/${service_name}"] -> Exec['systemctl daemon-reload']
-  }
-
+  File["/etc/rc.d/init.d/${service_name}"] -> Exec['systemctl daemon-reload']
+  File["/etc/sysconfig/${service_name}"] -> Exec['systemctl daemon-reload']
 }
