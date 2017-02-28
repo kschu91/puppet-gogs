@@ -24,7 +24,6 @@ by [installing Gogs from binary](https://gogs.io/docs/installation/install_from_
 instead of using any thirdparty PPA´s.
 You are completely free to configure Gogs for your needs since this module allows dynamic configuration for the `custom/conf/app.in` file.
 
-
 ## Setup
 
 ### What gogs affects
