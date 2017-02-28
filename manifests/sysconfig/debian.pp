@@ -30,7 +30,7 @@ define gogs::sysconfig::debian (
     owner  => 'root',
     group  => 'root',
     mode   => '0755',
-    notify  => Service[$service_name],
+    notify => Service[$service_name],
   }
 
 }

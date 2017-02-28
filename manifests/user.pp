@@ -29,7 +29,7 @@ class gogs::user (
       home       => $homedir,
       managehome => $manage_home,
       system     => true,
-      require    => Group[$group]
+      require    => Group[$group],
     }
 
   }
