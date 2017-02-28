@@ -21,7 +21,7 @@
 
 This module install and configure [Gogs (A painless self-hosted Git service.)](http://gogs.io)
 by [installing Gogs from binary](https://gogs.io/docs/installation/install_from_binary)
-instead of using any Thirdparty PPA´s.
+instead of using any thirdparty PPA´s.
 You are completely free to configure Gogs for your needs since this module allows dynamic configuration for the `custom/conf/app.in` file.
 
 ## Setup
@@ -33,7 +33,6 @@ You are completely free to configure Gogs for your needs since this module allow
 * By default a user and the correspendig group will be created (can be turned off). 
 * `curl`, `wget`, `tar`, `git` will be installed if not already installed on your system.
 * On `RedHat` and `CentOS` the `initscripts` package will be installed if not already done.
-* On `Debian` and `Ubuntu` the `software-properties-common` package will be installed if not already done.
 
 ### Setup Requirements
 
@@ -41,7 +40,7 @@ You are completely free to configure Gogs for your needs since this module allow
 installed before using Gogs. 
 Have a look at the [prerequisites documentation of Gogs](https://gogs.io/docs/installation) for a quick step into it.
 
-> **Note**: Currently puppet 3 and 4 is supported. But the support of puppet 3.x will be dropped in future versions this module. 
+> **Note**: Currently puppet 3 and 4 is supported. But the support of puppet 3.x will be dropped in future versions of this module. 
 
 
 ### Beginning with gogs
@@ -215,6 +214,7 @@ complete list of available configuration have a look at the [Gogs configuration 
 
 #### service_name
   By default the service is named `gogs`. If you ever need to change that you can do this by setting this parameter.
+  You should **NOT** change the service name after your first puppet run. Otherwise you may run into issues with two services and already blocked ports.
   
     class { '::gogs':
         service_name => 'gogitsgogs'
@@ -222,16 +222,13 @@ complete list of available configuration have a look at the [Gogs configuration 
 
 
 #### sysconfig
-  This module installs Gogs as a daemons/service on your system. This is done by the [provided init scripts of Gogs](https://github.com/gogits/gogs/tree/master/scripts/init)
-  and depends on your OS.
-  
   Normally there is no need to change this. But if you need to change variables for the daemon script anyways use this parameter.
   The provided variables are stored in a sysconfig file depending on your distribution and service name (e.g `/etc/default/gogs`)
   and are then automatically interpreted by the daemon scripts.
   
-  The configuration key to pass depends on your OS. For example for Debian the user variable is named `USER` and for CentOS it´s named `GOGS_USER`.
+  The configuration key to pass depends on your OS. For example on Debian the user variable is named `USER` and on CentOS it´s named `GOGS_USER`.
   Take a look into the [provided init scripts of Gogs](https://github.com/gogits/gogs/tree/master/scripts/init) to make sure you pass the correct variables.
-  otherwise your service may fail silently.
+  Otherwise your service may fail silently.
   
     class { '::gogs':
         sysconfig => {
@@ -239,12 +236,12 @@ complete list of available configuration have a look at the [Gogs configuration 
             'USER' => 'johndoe',
         }
     }
-
+> **Note**: This parameter has changed from version [0.2.0](https://forge.puppet.com/kschu91/gogs/0.2.0) to [1.0.0](https://forge.puppet.com/kschu91/gogs/1.0.0)
 
 ## Limitations
 
 This module is developed and tested on Ubuntu, Debian and CentOS (RedHat should also work). But other distributions are currently not supported.
-Dont hesitate to [create an issue on Github](https://github.com/kschu91/puppet-gogs/issues/new) if you are facing any trouble.
+Do not hesitate to [create an issue on Github](https://github.com/kschu91/puppet-gogs/issues/new) if you are facing any trouble.
 
 ## Development
 
