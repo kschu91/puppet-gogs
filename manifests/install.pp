@@ -14,6 +14,7 @@ class gogs::install (
     ensure => 'directory',
     owner  => $owner,
     group  => $group,
+    notify => Exec["permissions:${repository_root}"],
   }
 
     ->
@@ -22,6 +23,7 @@ class gogs::install (
       ensure => 'directory',
       owner  => $owner,
       group  => $group,
+      notify => Exec["permissions:${installation_directory}"],
     }
 
     ->
@@ -66,6 +68,18 @@ class gogs::install (
 
   exec { 'remove:/tmp/download_gogs_from_github.sh':
     command     => '/bin/rm -f /tmp/download_gogs_from_github.sh',
+    refreshonly => true,
+  }
+
+  # just to make sure permissions are fine if owner or group is changed afterwards
+  exec { "permissions:${installation_directory}":
+    command     => "/bin/chown -Rf ${owner}:${group} ${installation_directory}",
+    refreshonly => true,
+  }
+
+  # just to make sure permissions are fine if owner or group is changed afterwards
+  exec { "permissions:${repository_root}":
+    command     => "/bin/chown -Rf ${owner}:${group} ${repository_root}",
     refreshonly => true,
   }
 

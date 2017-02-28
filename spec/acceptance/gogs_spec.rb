@@ -69,26 +69,26 @@ describe 'gogs' do
     end
   end
 
-  # context 'with custom port' do
-  #   it 'should listen on 3210' do
-  #     pp = <<-EOS
-  #       class { '::gogs':
-  #           app_ini_sections => {
-  #               'server'   => {
-  #                   'HTTP_PORT' => 3210,
-  #               },
-  #           },
-  #       }
-  #     EOS
-  #
-  #     apply_manifest(pp, :catch_failures => true)
-  #     # @todo enable if gogs will restart only if version changed
-  #     # apply_manifest(pp, :catch_changes => true)
-  #   end
-  #
-  #   describe port(3210) do
-  #     it { is_expected.to be_listening }
-  #   end
-  # end
+  context 'with custom port' do
+    it 'should listen on 3210' do
+      pp = <<-EOS
+        class { '::gogs':
+            app_ini_sections => {
+                'server'   => {
+                    'HTTP_PORT' => 3210,
+                },
+            },
+        }
+      EOS
+
+      apply_manifest(pp, :catch_failures => true)
+      # @todo enable if gogs will restart only if version changed
+      # apply_manifest(pp, :catch_changes => true)
+    end
+
+    describe port(3210) do
+      it { is_expected.to be_listening }
+    end
+  end
 
 end
