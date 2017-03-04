@@ -1,6 +1,6 @@
 {
     "name": "kschu91-gogs",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "kschu91",
     "summary": "Install and configure Gogs (Go Git Service).",
     "license": "MIT",
