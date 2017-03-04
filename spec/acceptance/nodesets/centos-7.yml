@@ -3,6 +3,8 @@ HOSTS:
     default_apply_opts:
       order: random
       strict_variables:
+      debug:
+      verbose:
     platform: el-7-x86_64
     hypervisor : docker
     image: centos:7

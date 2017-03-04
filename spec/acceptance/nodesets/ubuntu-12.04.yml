@@ -3,6 +3,8 @@ HOSTS:
     default_apply_opts:
       order: random
       strict_variables:
+      debug:
+      verbose:
     platform: ubuntu-12.04-amd64
     hypervisor : docker
     image: ubuntu:12.04
