@@ -28,8 +28,9 @@ class gogs::service
   }
 
   service { $service_name:
-    ensure    => $service_ensure,
-    enable    => true,
-    hasstatus => true,
+    ensure     => $service_ensure,
+    enable     => true,
+    hasstatus  => false,
+    hasrestart => false,
   }
 }
