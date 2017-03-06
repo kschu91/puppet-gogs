@@ -4,6 +4,9 @@ class gogs::packages () {
     'RedHat': {
       ensure_packages(['git', 'curl', 'wget', 'tar', 'initscripts'])
     }
+    'OracleLinux': {
+      ensure_packages(['git', 'curl', 'wget', 'tar', 'initscripts'])
+    }
     'CentOS': {
       ensure_packages(['git', 'curl', 'wget', 'tar', 'initscripts'])
     }
