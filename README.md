@@ -33,7 +33,7 @@ You are completely free to configure Gogs for your needs since this module allow
 * A service will be installed with an init script.
 * By default a user and the correspendig group will be created (can be turned off). 
 * `curl`, `wget`, `tar`, `git` will be installed if not already installed on your system.
-* On `RedHat` and `CentOS` the `initscripts` package will be installed if not already done.
+* On `RedHat`, `CentOS` and `OracleLinux` the `initscripts` package will be installed if not already done.
 
 ### Setup Requirements
 
@@ -241,7 +241,7 @@ complete list of available configuration have a look at the [Gogs configuration 
 
 ## Limitations
 
-This module is developed and tested on Ubuntu, Debian and CentOS (RedHat should also work). But other distributions are currently not supported.
+This module is developed and tested on Ubuntu, Debian, CentOS and OracleLinux (RedHat should also work). But other distributions are currently not supported.
 Do not hesitate to [create an issue on Github](https://github.com/kschu91/puppet-gogs/issues/new) if you are facing any trouble.
 
 ## Development

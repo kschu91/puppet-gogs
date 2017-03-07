@@ -1,0 +1,17 @@
+HOSTS:
+  oracle-7-x64:
+    default_apply_opts:
+      order: random
+      strict_variables:
+      debug:
+      verbose:
+    platform: el-7-x64
+    hypervisor : docker
+    image: oraclelinux:7
+    docker_preserve_image: true
+    docker_cmd: '["/sbin/init"]'
+    docker_image_commands:
+      - 'yum install -y crontabs tar wget initscripts'
+CONFIG:
+  type: aio
+  log_level: debug

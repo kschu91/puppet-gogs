@@ -14,7 +14,7 @@ class gogs::service
       ::gogs::sysconfig::centos { 'RedHat': }
     }
     'OracleLinux': {
-      ::gogs::sysconfig::centos { 'RedHat': }
+      ::gogs::sysconfig::centos { 'OracleLinux': }
     }
     'CentOS': {
       ::gogs::sysconfig::centos { 'CentOS': }
