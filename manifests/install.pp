@@ -37,8 +37,7 @@ class gogs::install (
 
     ->
 
-    file {
-      'create:/tmp/download_gogs_from_github.sh':
+    file { 'create:/tmp/download_gogs_from_github.sh':
         ensure => 'file',
         path   => '/tmp/download_gogs_from_github.sh',
         source => 'puppet:///modules/gogs/download.sh',
@@ -51,6 +50,7 @@ class gogs::install (
 
     exec { 'download_gogs_from_github':
       command     => '/tmp/download_gogs_from_github.sh',
+      unless      => "/usr/bin/test -f ${installation_directory}/gogs",
       user        => $owner,
       group       => $group,
       environment => [
