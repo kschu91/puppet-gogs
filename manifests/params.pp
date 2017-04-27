@@ -3,6 +3,8 @@ class gogs::params {
   $service_ensure = 'running'
   $service_name = 'gogs'
 
+  $manage_packages = true
+
   $manage_user = true
   $manage_home = true
 
