@@ -3,6 +3,8 @@ class gogs (
   $service_ensure         = $gogs::params::service_ensure,
   $service_name           = $gogs::params::service_name,
 
+  $manage_packages        = $gogs::params::manage_packages,
+
   $version                = $gogs::params::version,
   $installation_directory = $gogs::params::installation_directory,
   $repository_root        = $gogs::params::repository_root,
