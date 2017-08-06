@@ -10,9 +10,6 @@ rvm:
   - 2.2
   - 2.3.0
 env:
-  - PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
-  - PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
-  - PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
   - PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
   - PUPPET_GEM_VERSION="~> 4.6.0" STRICT_VARIABLES=yes
   - PUPPET_GEM_VERSION="~> 4.7.0" STRICT_VARIABLES=yes
@@ -52,20 +49,8 @@ matrix:
   exclude:
   # puppet 3.x does not run with ruby 2.3
     - rvm: 2.3.0
-      env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
-    - rvm: 2.3.0
-      env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
-    - rvm: 2.3.0
-      env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
-    - rvm: 2.3.0
       env: PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
   # puppet 3.x does not run with ruby 2.2
-    - rvm: 2.2
-      env: PUPPET_GEM_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
-    - rvm: 2.2
-      env: PUPPET_GEM_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
-    - rvm: 2.2
-      env: PUPPET_GEM_VERSION="~> 3.7.0" STRICT_VARIABLES=yes
     - rvm: 2.2
       env: PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
   # puppet >=4.9 dropped support for ruby <=2.0
