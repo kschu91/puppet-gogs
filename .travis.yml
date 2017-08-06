@@ -4,7 +4,6 @@ bundler_args: --without system_tests --full-index
 before_install: rm Gemfile.lock || true
 script: ["bundle exec rake test"]
 rvm:
-  - 1.9
   - 2.0
   - 2.1
   - 2.2
@@ -55,8 +54,6 @@ matrix:
       env: PUPPET_GEM_VERSION="~> 3.8.0" STRICT_VARIABLES=yes FUTURE_PARSER=yes
   # puppet >=4.9 dropped support for ruby <=2.0
     - rvm: 2.0
-      env: PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
-    - rvm: 1.9
       env: PUPPET_GEM_VERSION="~> 4.9.0" STRICT_VARIABLES=yes
 deploy:
   provider: puppetforge
