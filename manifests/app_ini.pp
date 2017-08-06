@@ -28,15 +28,15 @@ class gogs::app_ini (
     ensure => 'directory',
     owner  => $owner,
     group  => $group,
-  } ->
+  }
 
-    file { "${installation_directory}/custom/conf":
+    -> file { "${installation_directory}/custom/conf":
       ensure => 'directory',
       owner  => $owner,
       group  => $group,
-    } ->
+    }
 
-    file { "${installation_directory}/custom/conf/app.ini":
+    -> file { "${installation_directory}/custom/conf/app.ini":
       ensure  => 'file',
       content => template('gogs/app.ini.erb'),
       owner   => $owner,

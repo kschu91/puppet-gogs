@@ -17,27 +17,21 @@ class gogs::install (
     notify => Exec["permissions:${repository_root}"],
   }
 
-    ->
-
-    file { $installation_directory:
+    -> file { $installation_directory:
       ensure => 'directory',
       owner  => $owner,
       group  => $group,
       notify => Exec["permissions:${installation_directory}"],
     }
 
-    ->
-
     # @todo make log path configurable (app.ini: [log] ROOT_PATH && $::gogs::params::sysconfig[LOGPATH])
-    file { "${installation_directory}/log":
+    -> file { "${installation_directory}/log":
       ensure => 'directory',
       owner  => $owner,
       group  => $group,
     }
 
-    ->
-
-    file { 'create:/tmp/download_gogs_from_github.sh':
+    -> file { 'create:/tmp/download_gogs_from_github.sh':
         ensure => 'file',
         path   => '/tmp/download_gogs_from_github.sh',
         source => 'puppet:///modules/gogs/download.sh',
@@ -46,9 +40,7 @@ class gogs::install (
         mode   => '0755',
     }
 
-    ->
-
-    exec { 'download_gogs_from_github':
+    -> exec { 'download_gogs_from_github':
       command     => '/tmp/download_gogs_from_github.sh',
       user        => $owner,
       group       => $group,

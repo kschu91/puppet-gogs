@@ -22,12 +22,12 @@ class gogs (
 
 ) inherits gogs::params {
 
-  anchor { 'gogs::begin': } ->
-    class { '::gogs::packages': } ->
-    class { '::gogs::user': } ->
-    class { '::gogs::install': } ->
-    class { '::gogs::app_ini': } ->
-    class { '::gogs::service': } ->
-    anchor { 'gogs::end': }
+  anchor { 'gogs::begin': }
+    -> class { '::gogs::packages': }
+    -> class { '::gogs::user': }
+    -> class { '::gogs::install': }
+    -> class { '::gogs::app_ini': }
+    -> class { '::gogs::service': }
+    -> anchor { 'gogs::end': }
 
 }
