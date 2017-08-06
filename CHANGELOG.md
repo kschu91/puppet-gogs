@@ -1,5 +1,7 @@
 ## 2017-08-06 Release 1.2.0
-- Added new parameter `manage_packages` to optionally disable installing dependent system packages automatically. [Check the README](https://github.com/kschu91/puppet-gogs/blob/master/README.md#manage_packages) for more details.
+- Added new parameter `manage_packages` to optionally disable installing of dependent system packages automatically. [Check the README](https://github.com/kschu91/puppet-gogs/blob/master/README.md#manage_packages) for more details.
+- Drop support for Ruby version 1.9
+- Drop support for puppet version 3.5 - 3.7 (3.8 is the minimum now)
 
 ## 2017-03-07 Release 1.1.0
 - Added support for OracleLinux (thanks to [wfsaxton](https://github.com/wfsaxton) for requesting the pull request).

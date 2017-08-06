@@ -1,8 +1,8 @@
 {
     "name": "kschu91-gogs",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "author": "kschu91",
-    "summary": "Install and configure Gogs (Go Git Service).",
+    "summary": "Install, configure and manage Gogs (Go Git Service) from binary instead of using any Thirdparty PPA´s.",
     "license": "MIT",
     "source": "https://github.com/kschu91/puppet-gogs.git",
     "project_page": "https://github.com/kschu91/puppet-gogs",

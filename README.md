@@ -181,7 +181,7 @@ complete list of available configuration have a look at the [Gogs configuration 
 #### manage_packages
   Set this to `false` if you want to manage the dependent packages by yourself.
   By default this is set to `true` and the module will install all the dependent packages by itself.
-  The packages bein installed are `curl`, `wget`, `tar`, `git` and on `RedHat`, `CentOS` and `OracleLinux` the `initscripts` package.
+  The packages being installed are `curl`, `wget`, `tar`, `git` and on `RedHat`, `CentOS` and `OracleLinux` the `initscripts` package.
   If you set this to `false` make sure the packages are installed before using this module.
 
     class { '::gogs':
