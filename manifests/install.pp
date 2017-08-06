@@ -50,7 +50,6 @@ class gogs::install (
 
     exec { 'download_gogs_from_github':
       command     => '/tmp/download_gogs_from_github.sh',
-      unless      => "/usr/bin/test -f ${installation_directory}/gogs",
       user        => $owner,
       group       => $group,
       environment => [
