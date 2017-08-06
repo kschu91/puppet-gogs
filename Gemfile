@@ -1,6 +1,7 @@
 source ENV['GEM_SOURCE'] || "https://rubygems.org"
 
 group :development, :unit_tests do
+  gem 'public_suffix', '~> 1.4.6',                         :require => false
   gem 'rake',                                              :require => false
   gem 'rspec',                                             :require => false
   gem 'rspec-puppet',                                      :require => false
