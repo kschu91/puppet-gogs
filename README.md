@@ -32,8 +32,8 @@ You are completely free to configure Gogs for your needs since this module allow
 * Gogs will be installed in `/opt/gogs` (can be changed).
 * A service will be installed with an init script.
 * By default a user and the correspendig group will be created (can be turned off). 
-* `curl`, `wget`, `tar`, `git` will be installed if not already installed on your system.
-* On `RedHat`, `CentOS` and `OracleLinux` the `initscripts` package will be installed if not already done.
+* By default `curl`, `wget`, `tar`, `git` will be installed if not already installed on your system (can be turned off).
+* On `RedHat`, `CentOS` and `OracleLinux` the `initscripts` package will be installed by default if not already done (can be turned off).
 
 ### Setup Requirements
 
@@ -175,6 +175,17 @@ complete list of available configuration have a look at the [Gogs configuration 
   
     class { '::gogs':
         manage_user => false
+    }
+
+
+#### manage_packages
+  Set this to `false` if you want to manage the dependent packages by yourself.
+  By default this is set to `true` and the module will install all the dependent packages by itself.
+  The packages bein installed are `curl`, `wget`, `tar`, `git` and on `RedHat`, `CentOS` and `OracleLinux` the `initscripts` package.
+  If you set this to `false` make sure the packages are installed before using this module.
+
+    class { '::gogs':
+        manage_packages => false
     }
 
 
