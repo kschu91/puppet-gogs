@@ -30,6 +30,7 @@ if [ -f "${PUPPET_GOGS_INSTALLATION_DIRECTORY}/templates/.VERSION" ]; then
     REMOTE_VERSION=$(wget -O- -q ${DOWNLOAD_VERSION_URL})
 
     if [ ${LOCAL_VERSION} == ${REMOTE_VERSION} ]; then
+      echo "gogs_version: ${PUPPET_GOGS_VERSION}" > /opt/puppetlabs/facter/facts.d/gogs.yaml
       echo "Version ${REMOTE_VERSION} already installed. skipping..."
       exit 0
     fi
@@ -39,5 +40,6 @@ echo "download and extract version ${PUPPET_GOGS_VERSION}"
 
 wget ${DOWNLOAD_TAR_GZ_URL} -O /tmp/gogs.tar.gz
 tar -xzf /tmp/gogs.tar.gz -C ${PUPPET_GOGS_INSTALLATION_DIRECTORY} --strip 1
+echo "gogs_version: ${PUPPET_GOGS_VERSION}" > /opt/puppetlabs/facter/facts.d/gogs.yaml
 
 rm -f /tmp/gogs.tar.gz
