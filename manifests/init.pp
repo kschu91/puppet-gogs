@@ -5,6 +5,8 @@ class gogs (
 
   $manage_packages        = $gogs::params::manage_packages,
 
+  $enable_puppetstats     = $gogs::params::enable_puppetstats,
+
   $version                = $gogs::params::version,
   $installation_directory = $gogs::params::installation_directory,
   $repository_root        = $gogs::params::repository_root,
@@ -21,6 +23,8 @@ class gogs (
   $sysconfig              = { },
 
 ) inherits gogs::params {
+
+  puppetstats { 'kschu91-gogs': enabled => $enable_puppetstats }
 
   anchor { 'gogs::begin': }
     -> class { '::gogs::packages': }
