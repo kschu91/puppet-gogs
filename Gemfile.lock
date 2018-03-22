@@ -50,6 +50,7 @@ GEM
       excon (>= 0.38.0)
       json
     excon (0.55.0)
+    facter (2.4.6)
     facter (2.4.6-x64-mingw32)
       ffi (~> 1.9.5)
       win32-dir (~> 0.4.8)
@@ -60,6 +61,7 @@ GEM
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     fast_gettext (1.1.0)
+    ffi (1.9.17)
     ffi (1.9.17-x64-mingw32)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -213,6 +215,7 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
+    hiera (3.2.2)
     hiera (3.2.2-x64-mingw32)
       win32-dir (~> 0.4.8)
     hocon (1.2.4)
@@ -256,11 +259,19 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
     net-telnet (0.1.1)
+    nokogiri (1.7.0.1)
+      mini_portile2 (~> 2.1.0)
     nokogiri (1.7.0.1-x64-mingw32)
       mini_portile2 (~> 2.1.0)
     open_uri_redirections (0.2.1)
     os (0.9.6)
     public_suffix (2.0.5)
+    puppet (4.9.2)
+      facter (> 2.0, < 4)
+      gettext-setup (>= 0.10, < 1)
+      hiera (>= 2.0, < 4)
+      json_pure (~> 1.8)
+      locale (~> 2.1)
     puppet (4.9.2-x64-mingw32)
       facter (> 2.0, < 4)
       ffi (~> 1.9.6)
@@ -368,6 +379,7 @@ GEM
     uber (0.1.0)
     unf (0.1.4)
       unf_ext
+    unf_ext (0.0.7.2)
     unf_ext (0.0.7.2-x64-mingw32)
     win32-dir (0.4.9)
       ffi (>= 1.0.0)
@@ -382,6 +394,7 @@ GEM
     xml-simple (1.1.5)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
@@ -412,4 +425,4 @@ DEPENDENCIES
   specinfra
 
 BUNDLED WITH
-   1.14.4
+   1.16.1

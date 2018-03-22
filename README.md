@@ -4,6 +4,7 @@
 [![Puppet Forge](https://img.shields.io/puppetforge/v/kschu91/gogs.svg)](https://forge.puppetlabs.com/kschu91/gogs)
 [![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/kschu91/gogs.svg)](https://forge.puppetlabs.com/kschu91/gogs)
 [![Puppet Forge - scores](https://img.shields.io/puppetforge/f/kschu91/gogs.svg)](https://forge.puppetlabs.com/kschu91/gogs)
+[![puppetstats](https://puppetstats.com/modules/kschu91-gogs/badge/unique-systems.svg)](https://puppetstats.com/modules/kschu91-gogs)
 
 #### Table of Contents
 
@@ -249,6 +250,17 @@ complete list of available configuration have a look at the [Gogs configuration 
         }
     }
 > **Note**: This parameter has changed from version [0.2.0](https://forge.puppet.com/kschu91/gogs/0.2.0) to [1.0.0](https://forge.puppet.com/kschu91/gogs/1.0.0)
+
+
+#### puppetstats_enabled
+  The gogs module is using [puppetstats.com](https://puppetstats.com) to ensure that the module is developed and maintained against it´s real usage, since
+  I do not want to support old puppet versions when almost nobody is using them anymore.
+  [puppetstats.com](https://puppetstats.com) tracks anonymous usage statistics of the puppet environment where gogs is running. By default `puppetstats_enabled` is set to `true`,
+  but of course you can opt-out from that. Simply set `puppetstats_enabled` it to `false`.
+    class { '::gogs':
+        puppetstats_enabled => false
+    }
+
 
 ## Limitations
 

@@ -5,6 +5,8 @@ class gogs::params {
 
   $manage_packages = true
 
+  $enable_puppetstats = true
+
   $manage_user = true
   $manage_home = true
 

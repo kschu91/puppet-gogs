@@ -3,6 +3,7 @@ require 'spec_helper_acceptance'
 describe 'gogs' do
 
   context 'with defaults' do
+    let(:facts) {{:puppetstats_disabled => true}}
     it 'should run' do
       pp = <<-EOS
         class { 'gogs': }
@@ -35,6 +36,7 @@ describe 'gogs' do
   end
 
   context 'with custom user' do
+    let(:facts) {{:puppetstats_disabled => true}}
     it 'should run' do
       pp = <<-EOS
         class { 'gogs':
@@ -70,6 +72,7 @@ describe 'gogs' do
   end
 
   context 'with custom port' do
+    let(:facts) {{:puppetstats_disabled => true}}
     it 'should listen on 3210' do
       pp = <<-EOS
         class { '::gogs':
