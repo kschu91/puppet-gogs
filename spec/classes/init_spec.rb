@@ -8,7 +8,7 @@ describe 'gogs' do
           :architecture => 'amd46'
       }
     end
-    let(:pre_condition) { "define puppetstats($full_qualified_module_name=$title, $enabled) {}" }
+    let(:pre_condition) { "define puppetstats($enabled) {}" }
     it {should contain_class('gogs')}
   end
 end
