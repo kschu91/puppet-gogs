@@ -10,7 +10,7 @@ class gogs::app_ini (
   $app_ini                = $gogs::app_ini,
   $app_ini_sections       = $gogs::app_ini_sections,
 
-  $log_path               = $gogs::log_path,
+  $log_path_internal      = $gogs::log_path_internal,
 
 ) {
 
@@ -23,7 +23,7 @@ class gogs::app_ini (
       'ROOT' => $repository_root,
     },
     'log'        => {
-      'ROOT_PATH' => $log_path,
+      'ROOT_PATH' => $log_path_internal,
     },
   }
 

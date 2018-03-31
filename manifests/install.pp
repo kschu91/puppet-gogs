@@ -9,7 +9,7 @@ class gogs::install (
 
   $installation_directory = $gogs::installation_directory,
   $repository_root        = $gogs::repository_root,
-  $log_path               = $gogs::log_path,
+  $log_path_internal      = $gogs::log_path_internal,
 
 ) {
 
@@ -27,7 +27,7 @@ class gogs::install (
     notify => Exec["permissions:${installation_directory}"],
   }
 
-  file { $log_path:
+  file { $log_path_internal:
     ensure  => 'directory',
     owner   => $owner,
     group   => $group,
