@@ -40,7 +40,7 @@ class gogs::app_ini (
     ensure  => 'directory',
     owner   => $owner,
     group   => $group,
-    require => File["${installation_directory}/custom"]
+    require => File["${installation_directory}/custom"],
   }
 
   file { "${installation_directory}/custom/conf/app.ini":
@@ -49,6 +49,6 @@ class gogs::app_ini (
     owner   => $owner,
     group   => $group,
     notify  => Service[$service_name],
-    require => File["${installation_directory}/custom/conf"]
+    require => File["${installation_directory}/custom/conf"],
   }
 }
