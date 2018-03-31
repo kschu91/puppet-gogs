@@ -257,14 +257,13 @@ Changing it to `/var/log/gogs` for example, will force gogs to write a `gogs.log
             'USER' => 'johndoe',
         }
     }
-> **Note**: This parameter has changed from version [0.2.0](https://forge.puppet.com/kschu91/gogs/0.2.0) to [1.0.0](https://forge.puppet.com/kschu91/gogs/1.0.0)
-
 
 #### puppetstats_enabled
   The gogs module is using [puppetstats.com](https://puppetstats.com) to ensure that the module is developed and maintained against it´s real usage, since
   I do not want to support old puppet versions when almost nobody is using them anymore.
   [puppetstats.com](https://puppetstats.com) tracks anonymous usage statistics of the puppet environment where gogs is running. By default `puppetstats_enabled` is set to `true`,
-  but of course you can opt-out from that. Simply set `puppetstats_enabled` it to `false`.
+  but of course you can opt-out from that. Simply set `puppetstats_enabled` to `false`.
+    
     class { '::gogs':
         puppetstats_enabled => false
     }
