@@ -25,9 +25,6 @@ class gogs::service
     'Ubuntu': {
       ::gogs::sysconfig::debian { 'Ubuntu': }
     }
-    default: {
-      fail("${::operatingsystem} not supported")
-    }
   }
 
   service { $service_name:
