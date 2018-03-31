@@ -28,13 +28,21 @@ class gogs::install (
 
   # @todo make log path configurable (app.ini: [log] ROOT_PATH && $::gogs::params::sysconfig[LOGPATH])
   file { "${installation_directory}/log":
-    ensure => 'directory',
-    owner  => $owner,
-    group  => $group,
+    ensure  => 'directory',
+    owner   => $owner,
+    group   => $group,
+    require => File[$installation_directory],
+  }
+
+  file { "${installation_directory}/scripts":
+    ensure  => 'directory',
+    owner   => $owner,
+    group   => $group,
+    require => File[$installation_directory],
   }
 
   exec { 'download_gogs_from_github':
-    command     => '/tmp/download_gogs_from_github.sh',
+    command     => "${installation_directory}/scripts/kschu91-gogs.download.sh",
     user        => $owner,
     group       => $group,
     environment => [
@@ -48,31 +56,31 @@ class gogs::install (
     require     => [
       File[$repository_root],
       File[$installation_directory],
-      File["${installation_directory}/log"],
-      File['/tmp/download_gogs_from_github.sh'],
-      File['/tmp/gogs_check_version.sh'],
+      File['kschu91-gogs.download.sh'],
+      File['kschu91-gogs.version.sh'],
     ],
     # only run if version has changed and needs to be updated
-    onlyif      => "/bin/bash /tmp/gogs_check_version.sh ${installation_directory} ${version}",
-    path        => ['/usr/bin', '/usr/sbin', '/bin'],
+    onlyif      => "${installation_directory}/scripts/kschu91-gogs.version.sh ${installation_directory} ${version}",
   }
 
-  file { '/tmp/download_gogs_from_github.sh':
-    ensure => 'file',
-    path   => '/tmp/download_gogs_from_github.sh',
-    source => 'puppet:///modules/gogs/download.sh',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
+  file { 'kschu91-gogs.download.sh':
+    ensure  => 'file',
+    path    => "${installation_directory}/scripts/kschu91-gogs.download.sh",
+    source  => 'puppet:///modules/gogs/download.sh',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    require => File["${installation_directory}/scripts"],
   }
 
-  file { '/tmp/gogs_check_version.sh':
-    ensure => 'file',
-    path   => '/tmp/gogs_check_version.sh',
-    source => 'puppet:///modules/gogs/version.sh',
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
+  file { 'kschu91-gogs.version.sh':
+    ensure  => 'file',
+    path    => "${installation_directory}/scripts/kschu91-gogs.version.sh",
+    source  => 'puppet:///modules/gogs/version.sh',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    require => File["${installation_directory}/scripts"],
   }
 
   # just to make sure permissions are fine if owner or group is changed afterwards
