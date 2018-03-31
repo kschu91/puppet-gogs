@@ -63,7 +63,7 @@ class gogs::install (
       notify      => [
         Exec['remove:/tmp/download_gogs_from_github.sh'],
         Exec['remove:/tmp/gogs_check_version.sh'],
-        Service[$gogs::params::service_name]
+        Service[$service_name]
       ],
       # only run if version has changed and needs to be updated
       onlyif      => "PUPPET_GOGS_INSTALLATION_DIRECTORY=${installation_directory} PUPPET_GOGS_VERSION=${version} /bin/bash /tmp/gogs_check_version.sh",
