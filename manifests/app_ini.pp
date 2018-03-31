@@ -10,7 +10,7 @@ class gogs::app_ini (
   $app_ini                = $gogs::app_ini,
   $app_ini_sections       = $gogs::app_ini_sections,
 
-  $log_path_internal      = $gogs::log_path_internal,
+  $log_path_internal      = $gogs::variables::log_path_internal,
 
 ) {
 
