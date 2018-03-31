@@ -28,15 +28,8 @@ class gogs (
 
   puppetstats { 'kschu91-gogs': enabled => $enable_puppetstats }
 
-  if $log_path == undef {
-    $log_path = "${installation_directory}/log"
-  }
-
-  if $home == undef {
-    $home = "/home/${owner}"
-  }
-
   anchor { 'gogs::begin': }
+  -> class { '::gogs::variables': }
   -> class { '::gogs::packages': }
   -> class { '::gogs::user': }
   -> class { '::gogs::install': }
