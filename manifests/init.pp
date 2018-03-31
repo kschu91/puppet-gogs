@@ -28,6 +28,10 @@ class gogs (
 
   puppetstats { 'kschu91-gogs': enabled => $enable_puppetstats }
 
+  if !($::operatingsystem in [ 'RedHat', 'OracleLinux', 'CentOS', 'Debian', 'Ubuntu' ]) {
+    fail("${::operatingsystem} not supported yet")
+  }
+
   anchor { 'gogs::begin': }
   -> class { '::gogs::variables': }
   -> class { '::gogs::packages': }
