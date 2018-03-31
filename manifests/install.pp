@@ -40,6 +40,15 @@ class gogs::install (
         mode   => '0755',
     }
 
+    -> file { 'create:/tmp/gogs_check_version.sh':
+        ensure => 'file',
+        path   => '/tmp/gogs_check_version.sh',
+        source => 'puppet:///modules/gogs/version.sh',
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755',
+    }
+
     -> exec { 'download_gogs_from_github':
       command     => '/tmp/download_gogs_from_github.sh',
       user        => $owner,
@@ -53,12 +62,21 @@ class gogs::install (
       logoutput   => true,
       notify      => [
         Exec['remove:/tmp/download_gogs_from_github.sh'],
+        Exec['remove:/tmp/gogs_check_version.sh'],
         Service[$gogs::params::service_name]
       ],
+      # only run if version has changed and needs to be updated
+      onlyif      => "PUPPET_GOGS_INSTALLATION_DIRECTORY=${installation_directory} PUPPET_GOGS_VERSION=${version} /bin/bash /tmp/gogs_check_version.sh",
+      path        => ['/usr/bin', '/usr/sbin', '/bin'],
     }
 
   exec { 'remove:/tmp/download_gogs_from_github.sh':
     command     => '/bin/rm -f /tmp/download_gogs_from_github.sh',
+    refreshonly => true,
+  }
+
+  exec { 'remove:/tmp/gogs_check_version.sh':
+    command     => '/bin/rm -f /tmp/gogs_check_version.sh',
     refreshonly => true,
   }
 
@@ -73,5 +91,4 @@ class gogs::install (
     command     => "/bin/chown -Rf ${owner}:${group} ${repository_root}",
     refreshonly => true,
   }
-
 }
