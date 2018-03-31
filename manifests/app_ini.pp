@@ -2,6 +2,7 @@ class gogs::app_ini (
 
   $installation_directory = $gogs::installation_directory,
   $repository_root        = $gogs::repository_root,
+  $service_name           = $gogs::service_name,
 
   $owner                  = $gogs::owner,
   $group                  = $gogs::group,
@@ -41,5 +42,6 @@ class gogs::app_ini (
       content => template('gogs/app.ini.erb'),
       owner   => $owner,
       group   => $group,
+      notify  => Service[$service_name],
     }
 }
