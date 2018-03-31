@@ -20,10 +20,10 @@ if [ -f "${PUPPET_GOGS_INSTALLATION_DIRECTORY}/templates/.VERSION" ]; then
     REMOTE_VERSION=$(wget -O- -q ${DOWNLOAD_VERSION_URL}) || exit 0
 
     if [ ${LOCAL_VERSION} == ${REMOTE_VERSION} ]; then
-        echo "${PUPPET_GOGS_VERSION} is already installed in ${PUPPET_GOGS_INSTALLATION_DIRECTORY}"
+        #echo "${PUPPET_GOGS_VERSION} is already installed in ${PUPPET_GOGS_INSTALLATION_DIRECTORY}"
         exit 1
     fi
-    echo "${LOCAL_VERSION} is installed, ${REMOTE_VERSION} is available"
+    #echo "${LOCAL_VERSION} is installed, ${REMOTE_VERSION} is available"
     exit 0
 fi
 
