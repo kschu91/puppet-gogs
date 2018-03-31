@@ -1,3 +1,9 @@
+## 2018-04-01 Release 1.4.0
+- Added parameter `log_path`, which allows setting the root path where gogs will store logs.
+- Unsupported operating systems are now getting useful warning, but do not fail anymore.
+- Refactored internal class dependencies to make the code more maintainable.
+- Refactored scripts, there are now stored in `installation_directory` rather than storing them in `tmp`.
+
 ## 2018-03-31 Release 1.3.0
 - Added [puppetstats.com](https://puppetstats.com)
 - Fixed: [gogs service restart is triggered on each puppet run](https://github.com/kschu91/puppet-gogs/issues/9).
