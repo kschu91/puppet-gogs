@@ -4,7 +4,7 @@ class gogs::user (
   $manage_home   = $gogs::manage_home,
   $owner         = $gogs::owner,
   $group         = $gogs::group,
-  $home_internal = $gogs::home_internal,
+  $home_internal = $gogs::variables::home_internal,
 
 ) {
 

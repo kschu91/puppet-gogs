@@ -9,7 +9,7 @@ class gogs::install (
 
   $installation_directory = $gogs::installation_directory,
   $repository_root        = $gogs::repository_root,
-  $log_path_internal      = $gogs::log_path_internal,
+  $log_path_internal      = $gogs::variables::log_path_internal,
 
 ) {
 
