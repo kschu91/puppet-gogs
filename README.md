@@ -234,6 +234,14 @@ complete list of available configuration have a look at the [Gogs configuration 
     }
 
 
+#### log_path
+  By default the `log_path` points to the folder `log` relative to the `installation_directory`, which is `/opt/gogs/log` per default.
+    
+    class { '::gogs':
+        log_path => '/var/log/gogs'
+    }
+Changing it to `/var/log/gogs` for example, will force gogs to write a `gogs.log` file in `/var/log/gogs`.
+
 #### sysconfig
   Normally there is no need to change this. But if you need to change variables for the daemon script anyways use this parameter.
   The provided variables are stored in a sysconfig file depending on your distribution and service name (e.g `/etc/default/gogs`)
