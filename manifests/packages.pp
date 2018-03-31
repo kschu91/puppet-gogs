@@ -1,6 +1,9 @@
-class gogs::packages () {
+class gogs::packages (
 
-  if $::gogs::manage_packages {
+  $manage_packages = $gogs::manage_packages,
+
+) {
+  if $manage_packages {
     case $::operatingsystem {
       'RedHat': {
         ensure_packages(['git', 'curl', 'wget', 'tar', 'initscripts'])
@@ -16,9 +19,6 @@ class gogs::packages () {
       }
       'Ubuntu': {
         ensure_packages(['git-core', 'curl', 'wget', 'tar'])
-      }
-      default: {
-        fail("${::operatingsystem} not supported")
       }
     }
   }
