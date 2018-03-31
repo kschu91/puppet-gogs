@@ -2,9 +2,8 @@
 
 set -e
 
-if [ -z ${PUPPET_GOGS_INSTALLATION_DIRECTORY} ]; then echo "PUPPET_GOGS_INSTALLATION_DIRECTORY not set!"; exit 1;  fi
-if [ -z ${PUPPET_GOGS_VERSION} ]; then echo "PUPPET_GOGS_VERSION not set!"; exit 1;  fi
-
+PUPPET_GOGS_INSTALLATION_DIRECTORY=$1
+PUPPET_GOGS_VERSION=$2
 
 if [ ${PUPPET_GOGS_VERSION} == "latest" ]; then
     LATEST_RELEASE=$(curl -L -s -H 'Accept: application/json' https://github.com/gogits/gogs/releases/latest)
@@ -20,10 +19,8 @@ if [ -f "${PUPPET_GOGS_INSTALLATION_DIRECTORY}/templates/.VERSION" ]; then
     REMOTE_VERSION=$(wget -O- -q ${DOWNLOAD_VERSION_URL}) || exit 0
 
     if [ ${LOCAL_VERSION} == ${REMOTE_VERSION} ]; then
-        #echo "${PUPPET_GOGS_VERSION} is already installed in ${PUPPET_GOGS_INSTALLATION_DIRECTORY}"
         exit 1
     fi
-    #echo "${LOCAL_VERSION} is installed, ${REMOTE_VERSION} is available"
     exit 0
 fi
 
