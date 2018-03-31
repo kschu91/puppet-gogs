@@ -25,6 +25,9 @@ class gogs::service
     'Ubuntu': {
       ::gogs::sysconfig::debian { 'Ubuntu': }
     }
+    default: {
+      warning("${::operatingsystem} not supported yet: Make sure to start gogs manually!")
+    }
   }
 
   service { $service_name:
