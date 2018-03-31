@@ -37,9 +37,9 @@ class gogs::app_ini (
   }
 
   file { "${installation_directory}/custom/conf":
-    ensure => 'directory',
-    owner  => $owner,
-    group  => $group,
+    ensure  => 'directory',
+    owner   => $owner,
+    group   => $group,
     require => File["${installation_directory}/custom"]
   }
 
