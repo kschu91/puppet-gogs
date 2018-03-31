@@ -61,6 +61,7 @@ class gogs::install (
     ],
     # only run if version has changed and needs to be updated
     onlyif      => "${installation_directory}/scripts/kschu91-gogs.version.sh ${installation_directory} ${version}",
+    path        => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
   }
 
   file { 'kschu91-gogs.download.sh':
