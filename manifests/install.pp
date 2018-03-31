@@ -52,6 +52,9 @@ class gogs::install (
       "PUPPET_GOGS_VERSION=${version}",
     ],
     logoutput   => true,
+    onlyif      => "bash ${installation_directory}/scripts/kschu91-gogs.version.sh ${installation_directory} ${version}"
+    ,
+    path        => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
     notify      => Service[$service_name],
     require     => [
       File[$repository_root],
@@ -59,17 +62,14 @@ class gogs::install (
       File['kschu91-gogs.download.sh'],
       File['kschu91-gogs.version.sh'],
     ],
-    # only run if version has changed and needs to be updated
-    onlyif      => "${installation_directory}/scripts/kschu91-gogs.version.sh ${installation_directory} ${version}",
-    path        => [ '/bin/', '/sbin/', '/usr/bin/', '/usr/sbin/' ],
   }
 
   file { 'kschu91-gogs.download.sh':
     ensure  => 'file',
     path    => "${installation_directory}/scripts/kschu91-gogs.download.sh",
     source  => 'puppet:///modules/gogs/download.sh',
-    owner   => 'root',
-    group   => 'root',
+    user    => $owner,
+    group   => $group,
     mode    => '0755',
     require => File["${installation_directory}/scripts"],
   }
@@ -78,8 +78,8 @@ class gogs::install (
     ensure  => 'file',
     path    => "${installation_directory}/scripts/kschu91-gogs.version.sh",
     source  => 'puppet:///modules/gogs/version.sh',
-    owner   => 'root',
-    group   => 'root',
+    user    => $owner,
+    group   => $group,
     mode    => '0755',
     require => File["${installation_directory}/scripts"],
   }
