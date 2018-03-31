@@ -20,6 +20,10 @@ class gogs::packages (
       'Ubuntu': {
         ensure_packages(['git-core', 'curl', 'wget', 'tar'])
       }
+      default: {
+        warning("${::operatingsystem}
+           not supported yet: Make sure dependend packages git, curl, wget and tar are installed!")
+      }
     }
   }
 }
