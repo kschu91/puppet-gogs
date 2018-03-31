@@ -8,15 +8,7 @@ class gogs::user (
 
 ) {
 
-  if $home == undef {
-    $homedir = "/home/${owner}"
-  }else {
-    $homedir = $home
-  }
-
   if $manage_user {
-
-    validate_absolute_path($homedir)
 
     group { $group:
       ensure => present,
@@ -26,11 +18,10 @@ class gogs::user (
     user { $owner:
       ensure     => present,
       gid        => $group,
-      home       => $homedir,
+      home       => $home,
       managehome => $manage_home,
       system     => true,
       require    => Group[$group],
     }
-
   }
 }

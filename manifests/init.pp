@@ -17,21 +17,31 @@ class gogs (
   $group                  = $gogs::params::group,
   $home                   = undef,
 
-  $app_ini                = { },
-  $app_ini_sections       = { },
+  $app_ini                = {},
+  $app_ini_sections       = {},
 
-  $sysconfig              = { },
+  $sysconfig              = {},
+
+  $log_path               = undef,
 
 ) inherits gogs::params {
 
   puppetstats { 'kschu91-gogs': enabled => $enable_puppetstats }
 
+  if $log_path == undef {
+    $log_path = "${installation_directory}/log"
+  }
+
+  if $home == undef {
+    $home = "/home/${owner}"
+  }
+
   anchor { 'gogs::begin': }
-    -> class { '::gogs::packages': }
-    -> class { '::gogs::user': }
-    -> class { '::gogs::install': }
-    -> class { '::gogs::app_ini': }
-    -> class { '::gogs::service': }
-    -> anchor { 'gogs::end': }
+  -> class { '::gogs::packages': }
+  -> class { '::gogs::user': }
+  -> class { '::gogs::install': }
+  -> class { '::gogs::app_ini': }
+  -> class { '::gogs::service': }
+  -> anchor { 'gogs::end': }
 
 }

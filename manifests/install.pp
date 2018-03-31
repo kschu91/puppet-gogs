@@ -9,6 +9,7 @@ class gogs::install (
 
   $installation_directory = $gogs::installation_directory,
   $repository_root        = $gogs::repository_root,
+  $log_path               = $gogs::log_path,
 
 ) {
 
@@ -26,8 +27,7 @@ class gogs::install (
     notify => Exec["permissions:${installation_directory}"],
   }
 
-  # @todo make log path configurable (app.ini: [log] ROOT_PATH && $::gogs::params::sysconfig[LOGPATH])
-  file { "${installation_directory}/log":
+  file { $log_path:
     ensure  => 'directory',
     owner   => $owner,
     group   => $group,
