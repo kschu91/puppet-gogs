@@ -3,7 +3,7 @@ define gogs::sysconfig::centos (
   $service_name           = $gogs::service_name,
   $installation_directory = $gogs::installation_directory,
   $owner                  = $gogs::owner,
-  $log_path_internal      = $gogs::log_path_internal,
+  $log_path_internal      = $gogs::variables::log_path_internal,
 
 ) {
 
