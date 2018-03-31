@@ -1,3 +1,8 @@
+## 2018-03-31 Release 1.3.0
+- Added [puppetstats.com](https://puppetstats.com)
+- Fixes: [gogs service restart is triggered on each puppet run](https://github.com/kschu91/puppet-gogs/issues/9).
+Which has caused gogs to restart on each puppet run. Now it get´s only restarted if the version needs to be changed.
+
 ## 2017-08-06 Release 1.2.0
 - Added new parameter `manage_packages` to optionally disable installing of dependent system packages automatically. [Check the README](https://github.com/kschu91/puppet-gogs/blob/master/README.md#manage_packages) for more details.
 - Drop support for Ruby version 1.9
