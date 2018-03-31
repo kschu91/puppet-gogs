@@ -10,8 +10,7 @@ describe 'gogs' do
       EOS
 
       apply_manifest(pp, :catch_failures => true)
-      # @todo enable if gogs will restart only if version changed
-      # apply_manifest(pp, :catch_changes => true)
+      apply_manifest(pp, :catch_changes => true)
     end
 
     describe user('git') do
@@ -46,8 +45,7 @@ describe 'gogs' do
       EOS
 
       apply_manifest(pp, :catch_failures => true)
-      # @todo enable if gogs will restart only if version changed
-      # apply_manifest(pp, :catch_changes => true)
+      apply_manifest(pp, :catch_changes => true)
     end
 
     describe user('foo') do
@@ -85,8 +83,7 @@ describe 'gogs' do
       EOS
 
       apply_manifest(pp, :catch_failures => true)
-      # @todo enable if gogs will restart only if version changed
-      # apply_manifest(pp, :catch_changes => true)
+      apply_manifest(pp, :catch_changes => true)
     end
 
     describe port(3210) do
