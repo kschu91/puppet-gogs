@@ -10,6 +10,8 @@ class gogs::app_ini (
   $app_ini                = $gogs::app_ini,
   $app_ini_sections       = $gogs::app_ini_sections,
 
+  $log_path               = $gogs::log_path,
+
 ) {
 
   $default_app_in = {
@@ -19,6 +21,9 @@ class gogs::app_ini (
   $default_ini_sections = {
     'repository' => {
       'ROOT' => $repository_root,
+    },
+    'log'        => {
+      'ROOT_PATH' => $log_path,
     },
   }
 
@@ -31,17 +36,19 @@ class gogs::app_ini (
     group  => $group,
   }
 
-    -> file { "${installation_directory}/custom/conf":
-      ensure => 'directory',
-      owner  => $owner,
-      group  => $group,
-    }
+  file { "${installation_directory}/custom/conf":
+    ensure => 'directory',
+    owner  => $owner,
+    group  => $group,
+    require => File["${installation_directory}/custom"]
+  }
 
-    -> file { "${installation_directory}/custom/conf/app.ini":
-      ensure  => 'file',
-      content => template('gogs/app.ini.erb'),
-      owner   => $owner,
-      group   => $group,
-      notify  => Service[$service_name],
-    }
+  file { "${installation_directory}/custom/conf/app.ini":
+    ensure  => 'file',
+    content => template('gogs/app.ini.erb'),
+    owner   => $owner,
+    group   => $group,
+    notify  => Service[$service_name],
+    require => File["${installation_directory}/custom/conf"]
+  }
 }

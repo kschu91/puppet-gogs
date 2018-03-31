@@ -3,6 +3,7 @@ define gogs::sysconfig::centos (
   $service_name           = $gogs::service_name,
   $installation_directory = $gogs::installation_directory,
   $owner                  = $gogs::owner,
+  $log_path               = $gogs::log_path,
 
 ) {
 
@@ -12,8 +13,8 @@ define gogs::sysconfig::centos (
     'GOGS_USER' => $owner,
     'GOGS_HOME' => $installation_directory,
     'GOGS_PATH' => "${installation_directory}/${service_name}",
-    'LOGPATH'   => "${installation_directory}/log",
-    'LOGFILE'   => "${installation_directory}/log/gogs.log",
+    'LOGPATH'   => $log_path,
+    'LOGFILE'   => "${log_path}/gogs.log",
   }
 
   file { "/etc/sysconfig/${service_name}":
