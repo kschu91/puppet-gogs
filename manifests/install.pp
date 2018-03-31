@@ -68,7 +68,7 @@ class gogs::install (
         Service[$service_name],
       ],
       # only run if version has changed and needs to be updated
-      onlyif      => "PUPPET_GOGS_INSTALLATION_DIRECTORY=${installation_directory} PUPPET_GOGS_VERSION=${version} /bin/bash /tmp/gogs_check_version.sh",
+      onlyif      => "test `PUPPET_GOGS_INSTALLATION_DIRECTORY=${installation_directory} PUPPET_GOGS_VERSION=${version} /bin/bash /tmp/gogs_check_version.sh`",
       path        => ['/usr/bin', '/usr/sbin', '/bin'],
     }
 
