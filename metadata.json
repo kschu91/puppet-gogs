@@ -1,6 +1,6 @@
 {
     "name": "kschu91-gogs",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "author": "kschu91",
     "summary": "Install, configure and manage Gogs (Go Git Service) from binary instead of using any Thirdparty PPA´s.",
     "license": "MIT",
