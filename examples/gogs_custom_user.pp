@@ -1,4 +1,4 @@
-class { '::gogs':
+class { 'gogs':
   owner => 'ping',
   group => 'pong',
 }

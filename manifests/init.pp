@@ -33,12 +33,12 @@ class gogs (
   }
 
   anchor { 'gogs::begin': }
-  -> class { '::gogs::variables': }
-  -> class { '::gogs::packages': }
-  -> class { '::gogs::user': }
-  -> class { '::gogs::install': }
-  -> class { '::gogs::app_ini': }
-  -> class { '::gogs::service': }
+  -> class { 'gogs::variables': }
+  -> class { 'gogs::packages': }
+  -> class { 'gogs::user': }
+  -> class { 'gogs::install': }
+  -> class { 'gogs::app_ini': }
+  -> class { 'gogs::service': }
   -> anchor { 'gogs::end': }
 
 }

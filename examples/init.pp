@@ -1,1 +1,1 @@
-include ::gogs
+include gogs
