@@ -22,13 +22,18 @@ group :development, :unit_tests do
   gem 'json_pure', '< 2.0.2',                              :require => false
 end
 
+
+
 group :system_tests do
-  gem 'beaker',               :require => false
-  gem 'beaker-docker',        :require => false
-  gem 'beaker-rspec', '> 5',  :require => false
-  gem 'beaker_spec_helper',   :require => false
-  gem 'serverspec',           :require => false
-  gem 'specinfra',            :require => false
+  gem 'beaker',                           :require => false
+  gem 'beaker-puppet',                    :require => false
+  gem 'beaker-rspec',                     :require => false
+  gem 'beaker-puppet_install_helper',     :require => false
+  gem 'beaker-docker',                    :require => false
+  gem 'beaker-rspec', '> 5',              :require => false
+  gem 'beaker_spec_helper',               :require => false
+  gem 'serverspec',                       :require => false
+  gem 'specinfra',                        :require => false
 end
 
 if puppetversion = ENV['PUPPET_GEM_VERSION']

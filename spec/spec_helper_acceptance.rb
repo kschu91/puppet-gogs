@@ -1,4 +1,6 @@
+require 'beaker-puppet'
 require 'beaker-rspec'
+require 'beaker/puppet_install_helper'
 
 install_puppet_agent_on hosts, {}
 
