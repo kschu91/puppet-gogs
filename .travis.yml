@@ -1,7 +1,7 @@
 ---
 language: ruby
 bundler_args: --full-index
-before_install: bundle config set without 'system_tests' && rm Gemfile.lock || true
+before_install: rm Gemfile.lock || true
 script: ["bundle exec rake test"]
 rvm:
   - 2.4
