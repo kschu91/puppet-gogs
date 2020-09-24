@@ -1,6 +1,6 @@
 require 'puppetlabs_spec_helper/rake_tasks'
 require 'puppet-lint/tasks/puppet-lint'
-require 'spec_helper'
+require_relative 'spec/spec_helper'
 
 Rake::Task[:lint].clear
 PuppetLint::RakeTask.new :lint do |config|
