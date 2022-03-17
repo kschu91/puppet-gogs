@@ -15,7 +15,7 @@ class gogs::packages (
         ensure_packages(['git', 'curl', 'wget', 'tar', 'initscripts'])
       }
       'Debian': {
-        ensure_packages(['git-core', 'curl', 'wget', 'tar'])
+        ensure_packages(['git', 'curl', 'wget', 'tar'])
       }
       'Ubuntu': {
         ensure_packages(['git-core', 'curl', 'wget', 'tar'])
