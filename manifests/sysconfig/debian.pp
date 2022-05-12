@@ -12,7 +12,7 @@ define gogs::sysconfig::debian (
     source => "${installation_directory}/scripts/systemd/gogs.service",
     owner  => 'root',
     group  => 'root',
-    mode   => '0755',
+    mode   => '0644',
     replace => false,
     notify => Service[$service_name],
   }  ~>
