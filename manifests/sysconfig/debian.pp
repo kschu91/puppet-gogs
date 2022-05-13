@@ -4,6 +4,7 @@ define gogs::sysconfig::debian (
   $installation_directory = $gogs::installation_directory,
   $owner                  = $gogs::owner,
   $group                  = $gogs::group,
+  $home                   = $gogs::home,
 
 ) {
 
@@ -52,7 +53,7 @@ define gogs::sysconfig::debian (
   file_line { '${service_name}.service Environment':
     ensure => present,
     path   => "/etc/systemd/system/${service_name}.service",
-    line   => "Environment=USER=${owner} HOME=${installation_directory}",
+    line   => "Environment=USER=${owner} HOME=${home}",
     match  => "^Environment=",
     notify => Exec['/bin/systemctl daemon-reload'],
   }
