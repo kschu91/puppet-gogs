@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+  
 set -e
 
 PUPPET_GOGS_INSTALLATION_DIRECTORY=$1
@@ -11,17 +11,10 @@ if [ ${PUPPET_GOGS_VERSION} == "latest" ]; then
     PUPPET_GOGS_VERSION=${LATEST_VERSION}
 fi
 
-DOWNLOAD_VERSION_URL="https://raw.githubusercontent.com/gogits/gogs/v${PUPPET_GOGS_VERSION}/templates/.VERSION"
+LOCAL_VERSION=$(${PUPPET_GOGS_INSTALLATION_DIRECTORY}/gogs --version 2>/dev/null| awk '{print $3}')
 
-if [ -f "${PUPPET_GOGS_INSTALLATION_DIRECTORY}/templates/.VERSION" ]; then
-
-    LOCAL_VERSION=$(<"${PUPPET_GOGS_INSTALLATION_DIRECTORY}/templates/.VERSION")
-    REMOTE_VERSION=$(wget -O- -q ${DOWNLOAD_VERSION_URL}) || exit 0
-
-    if [ ${LOCAL_VERSION} == ${REMOTE_VERSION} ]; then
-        exit 1
-    fi
-    exit 0
+if [ ${LOCAL_VERSION} == ${PUPPET_GOGS_VERSION} ]; then
+  exit 1
+else
+  exit 0
 fi
-
-exit 0
